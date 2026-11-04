@@ -7,11 +7,20 @@
 
 import type { CategorySlug, ContextualTagSlug } from "./categories";
 import type {
+  ContentLocale,
   PartnerStatus,
   PublicationStatus,
   VerificationStatus,
   VisibilityStatus,
 } from "./status";
+
+/**
+ * Optional localized translations for base listings.
+ */
+export interface ListingTranslation {
+  name?: string;
+  description?: string;
+}
 
 /**
  * Geographic coordinates.
@@ -84,6 +93,9 @@ export interface BaseListing {
 
   // Distinct marker for demo fixtures
   isDemo?: boolean;
+
+  // Optional localized content per supported locale
+  translations?: Partial<Record<ContentLocale, ListingTranslation>>;
 
   createdAt: string;
   updatedAt: string;

@@ -40,6 +40,11 @@ export type VerificationStatus =
   | "verified";
 
 /**
+ * Supported platform locales for translated content fields.
+ */
+export type ContentLocale = "en" | "pt-BR" | "es";
+
+/**
  * Type guard to check if content is in a published state.
  */
 export function isPublished(

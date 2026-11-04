@@ -1,0 +1,115 @@
+{
+  "Common": {
+    "brandName": "Nomads Pipa",
+    "regionTagline": "Praia da Pipa · RN",
+    "locationFootnote": "Praia da Pipa · Tibau do Sul · Rio Grande do Norte · Brasil",
+    "copyright": "© 2026 Nomads Pipa. All rights reserved.",
+    "exploreMore": "Explore More",
+    "viewDetails": "View Details",
+    "backToHome": "Back to Home",
+    "backToCategories": "Back to Categories",
+    "languages": {
+      "en": "English",
+      "pt-BR": "Português (Brasil)",
+      "es": "Español"
+    },
+    "languageSelectorLabel": "Select language",
+    "loading": "Loading...",
+    "search": "Search",
+    "partnerCta": "Become a Partner"
+  },
+  "Navigation": {
+    "explore": "Explore",
+    "categories": "Categories",
+    "events": "Events",
+    "community": "Community",
+    "about": "About",
+    "partner": "Become a Partner"
+  },
+  "Homepage": {
+    "heroBadge": "The Digital Hub for Praia da Pipa",
+    "heroTitle": "Connect, Work & Thrive in Pipa",
+    "heroSubtitle": "The local companion connecting digital nomads, remote workers, and travellers with verified spaces, community meetups, and local perks in Praia da Pipa, Brazil.",
+    "exploreCta": "Explore Categories",
+    "eventsCta": "Upcoming Meetups",
+    "curatedSectionTitle": "Curated Local Discovery",
+    "curatedSectionSubtitle": "Find verified spots tailored to remote workers and conscious travellers.",
+    "featuredEventsTitle": "Community & Events",
+    "featuredEventsSubtitle": "Join official meetups, community picks, and cultural happenings in Pipa.",
+    "viewAllEvents": "View All Events",
+    "browseCategories": "Browse All Categories"
+  },
+  "Categories": {
+    "title": "Discovery Categories",
+    "subtitle": "Explore places, activities, and services across Praia da Pipa.",
+    "allCategories": "All Categories",
+    "listingsCount": "{count, plural, =0 {No listings} =1 {1 listing} other {# listings}}",
+    "verifiedSpots": "Verified Spots",
+    "noListingsFound": "No listings found in this category yet.",
+    "backToCategories": "← Back to Categories"
+  },
+  "Events": {
+    "title": "Events & Meetups",
+    "subtitle": "Connect with nomads, join local workshops, surf sessions, and social gatherings.",
+    "upcomingEvents": "Upcoming Events",
+    "noEventsFound": "No upcoming events scheduled right now. Check back soon!",
+    "officialMeetup": "Nomads Pipa Meet-up",
+    "communityPick": "Community Pick",
+    "cityEvent": "City Event",
+    "rsvp": "RSVP / Join Event",
+    "startsAt": "Starts at",
+    "location": "Location",
+    "price": "Admission / Cover"
+  },
+  "Community": {
+    "title": "Nomads Pipa Community",
+    "subtitle": "Discover community initiatives, beach cleanups, sports groups, and local collaboration.",
+    "joinGroup": "Join WhatsApp Community",
+    "initiativesTitle": "Local Initiatives & Give Back",
+    "initiativesSubtitle": "Support and collaborate with local social and ecological projects in Tibau do Sul.",
+    "connectTitle": "Connect with Fellow Nomads",
+    "connectSubtitle": "Stay in the loop with weekly dinners, co-working days, and spontaneous meetups."
+  },
+  "Partner": {
+    "title": "Become a Partner",
+    "subtitle": "Connect your business directly with the growing digital nomad community in Praia da Pipa.",
+    "badge": "Partner Network",
+    "whyPartnerTitle": "Why partner with Nomads Pipa?",
+    "benefit1Title": "Targeted Footfall",
+    "benefit1Desc": "Attract remote workers, digital nomads, and quality travellers looking for great places to work, eat, and relax.",
+    "benefit2Title": "Verified Amenities",
+    "benefit2Desc": "Highlight your fast Wi-Fi, comfortable seating, and power outlets with trusted verification badges.",
+    "benefit3Title": "Off-Peak Flash Drops",
+    "benefit3Desc": "Boost off-peak hours with dynamic vouchers and quest campaigns designed to drive measurable customer visits.",
+    "applyCta": "Register Your Venue",
+    "contactSupport": "Have questions? Reach out via WhatsApp"
+  },
+  "Footer": {
+    "tagline": "The digital companion connecting digital nomads, remote workers, and conscious travellers with local businesses and community initiatives in Praia da Pipa, RN, Brazil.",
+    "communityLove": "Made with heart for the Pipa community.",
+    "discoverHeading": "Discover",
+    "exploreHub": "Explore Hub",
+    "allCategories": "All Categories",
+    "eventsMeetups": "Events & Meetups",
+    "communityInitiatives": "Community & Initiatives",
+    "partnersHeading": "Partners & Info",
+    "becomePartner": "Become a Partner",
+    "aboutNomadsPipa": "About Nomads Pipa",
+    "essentialServices": "Essential Services & Health",
+    "rightsReserved": "All rights reserved."
+  },
+  "Errors": {
+    "notFoundTitle": "Page Not Found",
+    "notFoundDescription": "Sorry, the page you are looking for does not exist or has moved.",
+    "genericErrorTitle": "Something went wrong",
+    "genericErrorDescription": "We encountered an unexpected error. Please try refreshing the page.",
+    "backHome": "Back to Home"
+  },
+  "Forms": {
+    "searchPlaceholder": "Search cafes, coworkings, activities...",
+    "filterBy": "Filter by",
+    "all": "All",
+    "submit": "Submit",
+    "reset": "Reset"
+  }
+}

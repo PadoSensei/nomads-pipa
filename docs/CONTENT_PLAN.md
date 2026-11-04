@@ -4,7 +4,7 @@
 **File:** `product/CONTENT_PLAN.md`  
 **Status:** Proposed  
 **Primary audience:** Digital nomads, travellers, local residents, and partner businesses  
-**Initial languages:** English and Portuguese  
+**Initial languages:** English, Brazilian Portuguese, and Spanish
 **Platform:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 
 ---
@@ -429,10 +429,9 @@ The initial directory should prioritise quality and usefulness over the total nu
 
 ## 7.1 Supported languages
 
-- English (`en`).
-- Portuguese (`pt-BR`).
-
-English can be the initial editorial language, while Portuguese should be available for local users and businesses.
+- English (`en`) — Default language for international nomads.
+- Brazilian Portuguese (`pt-BR`) — Natural language for local residents, Brazilian visitors, and businesses.
+- Spanish (`es`) — Broadly understandable Spanish for South American and international travellers.
 
 ## 7.2 Recommended approach
 
@@ -453,14 +452,12 @@ Examples:
 
 ### Editorial content
 
-Store language versions in the database.
-
-For example:
-
-- English business description.
-- Portuguese business description.
-- English event description.
-- Portuguese event description.
+Store language versions in the database or shared content models.
+In the TypeScript content models (`lib/content/`), listings and categories support an optional `translations` mapping (`Partial<Record<ContentLocale, ...>>`) that coordinates with NP-003:
+- Base listings can define localized `name` and `description`.
+- Event listings can define localized `title`, `description`, and `priceDescription`.
+- Discovery categories can define localized `name`, `tagline`, `description`, and `highlightBadge`.
+- The `getLocalizedListing`, `getLocalizedEvent`, and `getLocalizedCategory` helpers provide clean fallback to base fields when a translation for a specific locale is not present.
 
 ### Translation process
 

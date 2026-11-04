@@ -1,7 +1,12 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { Compass, Sparkles, Heart } from "lucide-react";
+import { LanguageSelector } from "./LanguageSelector";
 
-export function AppFooter() {
+export async function AppFooter() {
+  const t = await getTranslations("Footer");
+  const tCommon = await getTranslations("Common");
+
   return (
     <footer className="border-t border-border/80 bg-muted/40 py-10 md:py-14">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
@@ -13,30 +18,27 @@ export function AppFooter() {
                 <Compass className="h-4 w-4" />
               </div>
               <span className="text-base font-bold tracking-tight text-foreground">
-                Nomads Pipa
+                {tCommon("brandName")}
               </span>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground leading-relaxed">
-              The digital companion connecting digital nomads, remote workers,
-              and conscious travellers with local businesses and community initiatives
-              in Praia da Pipa, RN, Brazil.
+              {t("tagline")}
             </p>
             <div className="pt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-              <span>Made with</span>
+              <span>{t("communityLove")}</span>
               <Heart className="h-3.5 w-3.5 fill-accent-foreground text-accent-foreground inline" />
-              <span>for the Pipa community.</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
-              Discover
+              {t("discoverHeading")}
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/" className="transition-colors hover:text-foreground">
-                  Explore Hub
+                  {t("exploreHub")}
                 </Link>
               </li>
               <li>
@@ -44,7 +46,7 @@ export function AppFooter() {
                   href="/categories"
                   className="transition-colors hover:text-foreground"
                 >
-                  All Categories
+                  {t("allCategories")}
                 </Link>
               </li>
               <li>
@@ -52,7 +54,7 @@ export function AppFooter() {
                   href="/events"
                   className="transition-colors hover:text-foreground"
                 >
-                  Events & Meetups
+                  {t("eventsMeetups")}
                 </Link>
               </li>
               <li>
@@ -60,7 +62,7 @@ export function AppFooter() {
                   href="/community"
                   className="transition-colors hover:text-foreground"
                 >
-                  Community & Initiatives
+                  {t("communityInitiatives")}
                 </Link>
               </li>
             </ul>
@@ -69,7 +71,7 @@ export function AppFooter() {
           {/* Partners & About */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground">
-              Partners & Info
+              {t("partnersHeading")}
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
@@ -78,7 +80,7 @@ export function AppFooter() {
                   className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
                 >
                   <Sparkles className="h-3.5 w-3.5 text-accent-foreground" />
-                  Become a Partner
+                  {t("becomePartner")}
                 </Link>
               </li>
               <li>
@@ -86,7 +88,7 @@ export function AppFooter() {
                   href="/about"
                   className="transition-colors hover:text-foreground"
                 >
-                  About Nomads Pipa
+                  {t("aboutNomadsPipa")}
                 </Link>
               </li>
               <li>
@@ -94,17 +96,22 @@ export function AppFooter() {
                   href="/category/essential-services"
                   className="transition-colors hover:text-foreground"
                 >
-                  Essential Services & Health
+                  {t("essentialServices")}
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-border/60 pt-6 flex flex-col items-center justify-between gap-3 text-xs text-muted-foreground sm:flex-row">
-          <p>© 2026 Nomads Pipa. All rights reserved.</p>
+        {/* Secondary Language Switcher in Footer */}
+        <div className="mt-8 border-t border-border/60 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <LanguageSelector variant="footer" />
+        </div>
+
+        <div className="mt-4 border-t border-border/40 pt-4 flex flex-col items-center justify-between gap-3 text-xs text-muted-foreground sm:flex-row">
+          <p>{tCommon("copyright")}</p>
           <p className="text-center sm:text-right">
-            Praia da Pipa · Tibau do Sul · Rio Grande do Norte · Brasil
+            {tCommon("locationFootnote")}
           </p>
         </div>
       </div>

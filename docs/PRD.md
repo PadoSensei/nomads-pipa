@@ -55,7 +55,7 @@ The following principles should guide product and engineering decisions.
 | Business value              | Partner features must create measurable value for local businesses.                     |
 | Trust and safety            | Clearly distinguish verified partners, community recommendations, and general listings. |
 | Lean implementation         | Prefer simple, maintainable features over complex systems that delay launch.            |
-| International accessibility | English-first launch, with a clear path to Portuguese localisation.                     |
+| International accessibility | First-class trilingual support (English, Brazilian Portuguese, Spanish) via next-intl.  |
 
 ---
 
@@ -912,23 +912,21 @@ Automated itinerary planning and booking orchestration are outside initial MVP s
 
 # 19. Content, Language & Editorial Management
 
-## 19.1 Initial language
+## 19.1 Supported First-Class Languages (NP-016)
 
-The initial product language is English.
+The platform supports three first-class languages from foundation:
+- **English (`en`)**: Default language for international nomads and global travellers.
+- **Brazilian Portuguese (`pt-BR`)**: Natural, culturally appropriate Portuguese for local Pipa residents, Brazilian nomads, and businesses.
+- **Spanish (`es`)**: Broadly understandable Spanish for South American and international travellers.
 
-However, because the platform operates in Brazil, Portuguese support should be considered part of the product's localisation roadmap.
+## 19.2 Internationalisation Architecture
 
-## 19.2 Translation approach
-
-Recommended approach:
-
-- Store structured content independently of the interface language.
-- Support language-specific content fields where necessary.
-- Keep critical business information manually reviewed.
-- Use automated translation as a drafting aid, not as the final authority for important information.
-- Allow administrators to edit translated content.
-
-Do not assume automatic translation is reliable for emergency, medical, legal, or commercial terms.
+- **Locale-prefixed routing**: All routes are explicitly prefixed (`/en/...`, `/pt-BR/...`, `/es/...`) with `localePrefix: 'always'`. The root path `/` inspects `Accept-Language` headers and `NEXT_LOCALE` cookies, defaulting to `/en` without geolocation.
+- **Separated message files**: Translation dictionaries are isolated in `messages/en.json`, `messages/pt-BR.json`, and `messages/es.json`, featuring type-safe keys via `next-intl` AppConfig module augmentation.
+- **Language selector**: Accessible, keyboard-navigable language selector embedded in `AppHeader` and `AppFooter` displaying full language names ("English", "Português (Brasil)", "Español") while preserving current page pathnames.
+- **Controlled fallback**: Development environments surface visible warnings for missing translation keys; production renders structured fallback markers without crashing or silently substituting English.
+- **Formatting conventions**: Standardized currency formatting in BRL (`formatCurrencyBRL`), numbers, and dates anchored to `America/Fortaleza` timezone.
+- **Shared content models (NP-003 coordination)**: Reusable listings and categories support optional `translations` maps (`Partial<Record<ContentLocale, ...>>`) with clean fallback helpers.
 
 ## 19.3 Blog and editorial content
 
