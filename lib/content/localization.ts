@@ -6,7 +6,7 @@
  */
 
 import type { ContentLocale } from "./status";
-import type { BaseListing, BusinessListing } from "./businesses";
+import type { BaseListing } from "./businesses";
 import type { EventListing } from "./events";
 import type { DiscoveryCategory } from "./categories";
 

@@ -6,17 +6,14 @@ import { routing, locales, defaultLocale } from "@/i18n/routing";
 import {
   formatCurrencyBRL,
   formatDate,
-  formatDateTime,
   LOCAL_TIMEZONE,
 } from "@/lib/formatters";
 import {
   getLocalizedListing,
   getLocalizedEvent,
-  getLocalizedCategory,
 } from "@/lib/content/localization";
 import type { BaseListing } from "@/lib/content/businesses";
 import type { EventListing } from "@/lib/content/events";
-import type { DiscoveryCategory } from "@/lib/content/categories";
 
 function extractLeafKeys(obj: Record<string, unknown>, prefix = ""): string[] {
   const keys: string[] = [];

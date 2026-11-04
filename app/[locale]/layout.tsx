@@ -133,6 +133,12 @@ export default async function LocaleLayout({
       )}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          Skip to main content
+        </a>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <a
             href="#main-content"
@@ -141,11 +147,15 @@ export default async function LocaleLayout({
             Skip to main content
           </a>
           <AppHeader />
+<<<<<<< HEAD
           <main
             id="main-content"
             tabIndex={-1}
             className="flex-1 pb-16 outline-none md:pb-0"
           >
+=======
+          <main id="main-content" tabIndex={-1} className="flex-1 pb-16 outline-none md:pb-0">
+>>>>>>> 580eb59fdaa13cc165a53cf8a404087274c46dea
             {children}
           </main>
           <AppFooter />
