@@ -12,10 +12,10 @@ export function AppHeader() {
         {/* Brand */}
         <Link
           href="/"
-          className="group flex items-center gap-2.5 transition-transform active:scale-95"
+          className="group flex items-center gap-2.5 rounded-xl transition-transform active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-colors group-hover:bg-primary/90">
-            <Compass className="h-5 w-5 transition-transform duration-300 group-hover:rotate-45" />
+            <Compass className="h-5 w-5 transition-transform duration-300 group-hover:rotate-45 motion-reduce:transform-none motion-reduce:transition-none" />
           </div>
           <div className="flex flex-col">
             <span className="text-base font-bold tracking-tight text-foreground sm:text-lg">
