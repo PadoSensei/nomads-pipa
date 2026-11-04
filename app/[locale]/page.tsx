@@ -12,7 +12,6 @@ import {
   MapPin,
   QrCode,
   Users,
-  Search,
   Wifi,
   Sun,
 } from "lucide-react";

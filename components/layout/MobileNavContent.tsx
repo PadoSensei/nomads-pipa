@@ -32,8 +32,9 @@ export function MobileNavContent() {
           <Link
             key={item.href}
             href={item.href}
+            aria-current={isActive ? "page" : undefined}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center gap-1 py-1 text-[11px] font-medium transition-colors select-none",
+              "flex flex-1 min-h-[48px] flex-col items-center justify-center gap-1 py-1 text-[11px] font-medium transition-colors select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg",
               isActive
                 ? "text-primary font-semibold"
                 : "text-muted-foreground hover:text-foreground"
