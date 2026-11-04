@@ -1,98 +1,86 @@
-import { render, screen } from "@testing-library/react";
-import { NextIntlClientProvider } from "next-intl";
-import { CalendarDays } from "lucide-react";
-import type { ReactElement } from "react";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen } from "@testing-library/react"
+import { describe, expect, it, vi } from "vitest"
+import { NextIntlClientProvider } from "next-intl"
+import enMessages from "@/messages/en.json"
+import { HeaderNavLinks } from "@/components/layout/HeaderNavLinks"
+import { MobileNavContent } from "@/components/layout/MobileNavContent"
+import { PlaceholderPage } from "@/components/layout/PlaceholderPage"
+import { CalendarDays } from "lucide-react"
 
-import { HeaderNavLinks } from "@/components/layout/HeaderNavLinks";
-import { MobileNavContent } from "@/components/layout/MobileNavContent";
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
-import messages from "@/messages/en.json"; // adjust if your messages live elsewhere
-
-// One shared mock so both the plain Next hook and the locale-aware hook
-// (next-intl's usePathname, which returns the path without the locale prefix)
-// are controlled by the same value in each test.
-const mockPathname = vi.hoisted(() => vi.fn());
-
+// Mock usePathname while preserving other Next.js navigation exports required by next-intl
 vi.mock("next/navigation", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("next/navigation")>();
+  const actual = await importOriginal<typeof import("next/navigation")>()
   return {
     ...actual,
-    usePathname: mockPathname,
-  };
-});
+    usePathname: vi.fn(),
+  }
+})
 
-vi.mock("@/i18n/navigation", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("@/i18n/navigation")>();
-  return {
-    ...actual,
-    usePathname: mockPathname,
-  };
-});
+import { usePathname } from "next/navigation"
 
-function renderWithIntl(ui: ReactElement) {
+function renderWithIntl(ui: React.ReactNode) {
   return render(
-    <NextIntlClientProvider locale="en" messages={messages}>
+    <NextIntlClientProvider locale="en" messages={enMessages}>
       {ui}
     </NextIntlClientProvider>
-  );
+  )
 }
 
 describe("Accessibility & Responsive QA Unit Tests", () => {
   describe("HeaderNavLinks", () => {
     it("sets aria-current='page' only on the active link and omits it on inactive links", () => {
-      mockPathname.mockReturnValue("/categories");
+      vi.mocked(usePathname).mockReturnValue("/categories")
 
-      renderWithIntl(<HeaderNavLinks />);
+      renderWithIntl(<HeaderNavLinks />)
 
-      const activeLink = screen.getByRole("link", { name: "Categories" });
-      expect(activeLink).toHaveAttribute("aria-current", "page");
+      const activeLink = screen.getByRole("link", { name: "Categories" })
+      expect(activeLink).toHaveAttribute("aria-current", "page")
 
-      const inactiveLink = screen.getByRole("link", { name: "Events" });
-      expect(inactiveLink).not.toHaveAttribute("aria-current");
-    });
+      const inactiveLink = screen.getByRole("link", { name: "Events" })
+      expect(inactiveLink).not.toHaveAttribute("aria-current")
+    })
 
     it("has accessible navigation landmark with aria-label", () => {
-      mockPathname.mockReturnValue("/");
+      vi.mocked(usePathname).mockReturnValue("/")
 
-      renderWithIntl(<HeaderNavLinks />);
+      renderWithIntl(<HeaderNavLinks />)
 
       const nav = screen.getByRole("navigation", {
         name: "Desktop primary navigation",
-      });
-      expect(nav).toBeInTheDocument();
-    });
-  });
+      })
+      expect(nav).toBeInTheDocument()
+    })
+  })
 
   describe("MobileNavContent", () => {
     it("sets aria-current='page' on active mobile link", () => {
-      mockPathname.mockReturnValue("/events");
+      vi.mocked(usePathname).mockReturnValue("/events")
 
-      renderWithIntl(<MobileNavContent />);
+      renderWithIntl(<MobileNavContent />)
 
-      const activeLink = screen.getByRole("link", { name: "Events" });
-      expect(activeLink).toHaveAttribute("aria-current", "page");
+      const activeLink = screen.getByRole("link", { name: "Events" })
+      expect(activeLink).toHaveAttribute("aria-current", "page")
 
-      const inactiveLink = screen.getByRole("link", { name: "Explore" });
-      expect(inactiveLink).not.toHaveAttribute("aria-current");
-    });
+      const inactiveLink = screen.getByRole("link", { name: "Explore" })
+      expect(inactiveLink).not.toHaveAttribute("aria-current")
+    })
 
     it("has accessible navigation landmark and minimum touch target size class", () => {
-      mockPathname.mockReturnValue("/");
+      vi.mocked(usePathname).mockReturnValue("/")
 
-      renderWithIntl(<MobileNavContent />);
+      renderWithIntl(<MobileNavContent />)
 
       const nav = screen.getByRole("navigation", {
         name: "Mobile bottom navigation",
-      });
-      expect(nav).toBeInTheDocument();
+      })
+      expect(nav).toBeInTheDocument()
 
-      const links = screen.getAllByRole("link");
+      const links = screen.getAllByRole("link")
       links.forEach((link) => {
-        expect(link.className).toContain("min-h-[48px]");
-      });
-    });
-  });
+        expect(link.className).toContain("min-h-[48px]")
+      })
+    })
+  })
 
   describe("PlaceholderPage", () => {
     it("renders exactly one semantic h1 heading and a logical back link", () => {
@@ -102,13 +90,13 @@ describe("Accessibility & Responsive QA Unit Tests", () => {
           description="A preview of community events."
           icon={CalendarDays}
         />
-      );
+      )
 
-      const heading = screen.getByRole("heading", { level: 1 });
-      expect(heading).toHaveTextContent("Test Events Hub");
+      const heading = screen.getByRole("heading", { level: 1 })
+      expect(heading).toHaveTextContent("Test Events Hub")
 
-      const backLink = screen.getByRole("link", { name: /back to explore/i });
-      expect(backLink).toBeInTheDocument();
-    });
-  });
-});
+      const backLink = screen.getByRole("link", { name: /back to explore/i })
+      expect(backLink).toBeInTheDocument()
+    })
+  })
+})
