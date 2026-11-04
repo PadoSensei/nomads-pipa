@@ -30,8 +30,9 @@ export function HeaderNavLinks() {
           <Link
             key={link.href}
             href={link.href}
+            aria-current={isActive ? "page" : undefined}
             className={cn(
-              "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors",
+              "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
               isActive
                 ? "bg-secondary text-primary font-semibold shadow-xs"
                 : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"

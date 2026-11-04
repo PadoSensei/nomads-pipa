@@ -2,7 +2,7 @@ import * as rootParams from "next/root-params";
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 import { Formats, hasLocale, IntlErrorCode } from "next-intl";
-import { routing, type AppLocale } from "./routing";
+import { routing } from "./routing";
 
 export const formats = {
   dateTime: {

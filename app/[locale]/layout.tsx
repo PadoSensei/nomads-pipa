@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import "../globals.css";
 import { cn } from "@/lib/utils";
@@ -9,23 +9,23 @@ import { AppHeader } from "@/components/layout/AppHeader";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { AppFooter } from "@/components/layout/AppFooter";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sora = Sora({
   subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0f4c5c",
+  themeColor: "#073F3B",
 };
 
 export function generateStaticParams() {
@@ -127,16 +127,23 @@ export default async function LocaleLayout({
       className={cn(
         "h-full",
         "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable
+        inter.variable,
+        sora.variable,
+        "font-sans"
       )}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        >
+          Skip to main content
+        </a>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <AppHeader />
-          <main className="flex-1 pb-16 md:pb-0">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1 pb-16 outline-none md:pb-0">
+            {children}
+          </main>
           <AppFooter />
           <MobileBottomNav />
         </NextIntlClientProvider>

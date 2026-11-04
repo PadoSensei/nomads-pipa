@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
 
 export const metadata: Metadata = {
