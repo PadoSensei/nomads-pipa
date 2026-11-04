@@ -117,7 +117,11 @@ A rigorous audit of the closed tasks was conducted against the repository codeba
 ### 3.6 NP-019: Accessibility and Responsive Experience
 - **Documented Objective:** Ensure WCAG 2.2 Level AA compliance, responsive touch targets (minimum 44px), skip links, focus states, `aria-current="page"`, and reduced-motion support.
 - **Implementation Evidence:**
-  - `docs/ACCESSIBILITY_RESPONSIVE_QA.md`: Comprehensive audit document tracking issues AUD-01 through AUD-08.
+  - `docs/ACCESSIBILITY_RESPONSIVE_QA.md`: Comprehensive audit document tracking 10 discrete audit findings:
+    - **Fixed in NP-019:** AUD-01 (Skip navigation link), AUD-02 (Mobile bottom nav touch targets >= 44px), AUD-03 (`aria-current="page"` indicators), AUD-04 (Visible focus rings on links), AUD-05 (Unused component imports/clean linter), AUD-06 (Reduced motion on brand hover).
+    - **Deferred to NP-017:** AUD-07 (Color contrast tuning for secondary accents, completed in NP-017).
+    - **Deferred to NP-016:** AUD-08 (Dynamic `<html lang="...">` and localized ARIA labels, completed in NP-016).
+    - **Deferred to follow-up / component integration:** AUD-09 (Standardize footer heading level hierarchy or wrap in `<nav aria-label="Footer">`), AUD-10 (Live region announcements for Embla carousel slide changes with dynamic remote data).
   - `components/layout/MobileNavContent.tsx`: Interactive touch targets enforce `min-h-[48px]`.
   - `components/layout/HeaderNavLinks.tsx` & `MobileNavContent.tsx`: Explicit `aria-current={isActive ? "page" : undefined}` on navigation links.
   - Focus indicators: Explicit `focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none`.
@@ -148,7 +152,7 @@ Each item is classified into one of six standard statuses:
 | **F-005: Search** | Should Have | **Documented but not implemented** | Specified in `docs/FEATURES.md` and `docs/FRONTEND.md`. *Gap:* No search input, no full-text search index, no client-side search logic. |
 | **F-006: Events Calendar** | Must Have | **Documented but not implemented** | Route exists (`app/[locale]/events/page.tsx`), but renders `PlaceholderPage`. Event models exist in `lib/content/events.ts`. Schema in `docs/DATABASE.md`. *Gap:* No calendar UI, no event list, no date filtering. |
 | **F-007: Community Picks** | Should Have | **Documented but not implemented** | Event type `community_pick` defined in `lib/content/events.ts`. *Gap:* No UI presentation or community endorsement display. |
-| **F-008: WhatsApp Community Links** | Should Have | **Partially implemented** | Route exists (`app/[locale]/community/page.tsx`), but renders `PlaceholderPage`. Category metadata includes WhatsApp context. *Gap:* No actual link directory or WhatsApp deep links. |
+| **F-008: WhatsApp Community Links** | Should Have | **Documented but not implemented** | Route exists (`app/[locale]/community/page.tsx`), but strictly renders `PlaceholderPage`. Category metadata mentions WhatsApp context, but zero working links or community group directories exist in code. |
 | **F-009: Give Back** | Could Have | **Documented but not implemented** | Subcategory defined in `lib/content/categories.ts` (`CommunityGiveBackSubcategory`). *Gap:* No dedicated view or initiative listings. |
 | **F-010: Get Me a Ride** | Must Have | **Documented but not implemented** | Category defined (`transportation`). User flow specified in `docs/USER_FLOWS.md`. *Gap:* No driver listings, transfer request form, or WhatsApp pre-filled routing. |
 | **F-011: Transport Directory** | Should Have | **Documented but not implemented** | Subcategories modeled (`TransportationSubcategory`). *Gap:* No transport provider listings or timetables. |
@@ -219,7 +223,10 @@ A comparison between the TypeScript types implemented in NP-003 and the PostgreS
 ### 5.4 Integration Between Completed Tasks (NP-016, NP-017, NP-019)
 The three foundation PRs were examined together for regressions or conflicts:
 1. **Duplicate Skip-Navigation Link in `layout.tsx`:**
-   - In `app/[locale]/layout.tsx` (lines 140 and 147), `<a href="#main-content">Skip to main content</a>` appears twice—once before `<NextIntlClientProvider>` and once inside it. This is a merge relic from PR #13 that should be cleaned up.
+   - In `app/[locale]/layout.tsx`, `<a href="#main-content">Skip to main content</a>` appears twice in `<body>`:
+     - Line 137–141: Placed as the direct first child of `<body>`, immediately before `<NextIntlClientProvider>`.
+     - Line 143–148: Placed as the first child *inside* `<NextIntlClientProvider>`, immediately before `<AppHeader />`.
+   - **Resolution:** The outer link (line 137–141) should be removed, while the inner link (inside `<NextIntlClientProvider>`) should remain. Retaining the skip link inside `<NextIntlClientProvider>` allows its link text to be localized via `next-intl` (addressing AUD-08) rather than remaining hardcoded in English outside the translation provider.
 2. **Internationalisation Disconnect on Pages:**
    - NP-016 configured `next-intl` beautifully in `i18n/request.ts` and `messages/*.json`. However, page components (`app/[locale]/page.tsx`, `categories/page.tsx`, `about/page.tsx`, etc.) do not use `useTranslations()`. When toggling from English to Portuguese or Spanish, only the header, footer, and language selector change language; the main page content remains entirely English.
 3. **Brand Token Consistency:**
