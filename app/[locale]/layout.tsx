@@ -147,15 +147,11 @@ export default async function LocaleLayout({
             Skip to main content
           </a>
           <AppHeader />
-<<<<<<< HEAD
           <main
             id="main-content"
             tabIndex={-1}
             className="flex-1 pb-16 outline-none md:pb-0"
           >
-=======
-          <main id="main-content" tabIndex={-1} className="flex-1 pb-16 outline-none md:pb-0">
->>>>>>> 580eb59fdaa13cc165a53cf8a404087274c46dea
             {children}
           </main>
           <AppFooter />
