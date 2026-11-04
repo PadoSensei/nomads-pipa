@@ -1,6 +1,6 @@
 # Nomads Pipa — User Guide
 
-**Document:** `product/USER_GUIDE.md`  
+**Document:** `docs/USER_GUIDE.md`
 **Audience:** Digital nomads, visitors, and community members  
 **Platform:** Nomads Pipa PWA  
 **Status:** Product documentation

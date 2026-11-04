@@ -1,7 +1,7 @@
 # Observability & Monitoring
 
 **Project:** Nomads Pipa  
-**Document:** `architecture/OBSERVABILITY.md`  
+**Document:** `docs/OBSERVABILITY.md`
 **Status:** Implementation-ready baseline  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 

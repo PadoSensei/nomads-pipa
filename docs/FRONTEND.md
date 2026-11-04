@@ -1,7 +1,7 @@
 # Frontend Architecture
 
 **Project:** Nomads Pipa  
-**File:** `architecture/FRONTEND.md`  
+**File:** `docs/FRONTEND.md`
 **Status:** Draft  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 

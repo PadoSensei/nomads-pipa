@@ -1,7 +1,7 @@
 # Launch Checklist
 
 **Project:** Nomads Pipa  
-**File:** `product/LAUNCH_CHECKLIST.md`  
+**File:** `docs/LAUNCH_CHECKLIST.md`
 **Status:** Proposed  
 **Release:** Discovery MVP — Version 1.0  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase

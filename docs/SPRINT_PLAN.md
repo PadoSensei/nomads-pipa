@@ -1,7 +1,7 @@
 # Sprint Plan
 
 **Project:** Nomads Pipa  
-**File:** `product/SPRINT_PLAN.md`  
+**File:** `docs/SPRINT_PLAN.md`
 **Status:** Proposed  
 **Development approach:** Solo developer  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase

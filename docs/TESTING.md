@@ -1,7 +1,7 @@
 # Testing Strategy
 
 **Project:** Nomads Pipa  
-**Document:** `architecture/TESTING.md`  
+**Document:** `docs/TESTING.md`
 **Status:** Implementation-ready baseline  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 

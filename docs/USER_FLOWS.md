@@ -1,7 +1,7 @@
 # User Flows
 
 **Project:** Nomads Pipa  
-**File:** `product/USER_FLOWS.md`  
+**File:** `docs/USER_FLOWS.md`
 **Status:** Draft  
 **Platform:** Mobile-first PWA  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase

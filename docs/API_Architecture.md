@@ -1,7 +1,7 @@
 # API Architecture
 
 **Project:** Nomads Pipa  
-**Document:** `architecture/API.md`  
+**Document:** `docs/API_Architecture.md`
 **Status:** Draft  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 

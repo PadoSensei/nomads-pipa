@@ -1,7 +1,7 @@
 # Content Plan
 
 **Project:** Nomads Pipa  
-**File:** `product/CONTENT_PLAN.md`  
+**File:** `docs/CONTENT_PLAN.md`
 **Status:** Proposed  
 **Primary audience:** Digital nomads, travellers, local residents, and partner businesses  
 **Initial languages:** English, Brazilian Portuguese, and Spanish

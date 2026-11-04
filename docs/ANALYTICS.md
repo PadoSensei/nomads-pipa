@@ -1,6 +1,6 @@
 # Nomads Pipa — Analytics Architecture
 
-**Document:** `architecture/ANALYTICS.md`  
+**Document:** `docs/ANALYTICS.md`
 **Status:** Technical specification  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase, PostgreSQL
 
