@@ -1,28 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { AppFooter } from "@/components/layout/AppFooter";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const sora = Sora({
   subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0f4c5c",
+  themeColor: "#073F3B",
 };
 
 export const metadata: Metadata = {
@@ -70,10 +70,9 @@ export default function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable
+        inter.variable,
+        sora.variable,
+        "font-sans"
       )}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">

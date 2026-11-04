@@ -634,42 +634,80 @@ Nomads Pipa should feel:
 
 Avoid making the directory look like a corporate SaaS dashboard. The partner dashboard can be more functional while maintaining the same brand identity.
 
-### Design tokens
+### Official Brand Colours and Tokens
 
-Define colours and typography centrally using CSS variables and Tailwind configuration.
+The Nomads Pipa design system is defined using Tailwind CSS v4 `@theme inline` in `app/globals.css`. It features seven core brand colours and supporting tints:
 
-Suggested semantic colour roles:
+| Brand Token | Hex Code | Intended Role |
+| ----------- | -------- | ------------- |
+| `ocean` (`--color-ocean`) | `#073F3B` | Primary authority and action. Main headers, primary CTAs, active navigation items. |
+| `lagoon` (`--color-lagoon`) | `#00A896` | Friendly interaction, highlights, active status, focus rings. |
+| `lagoon-tint` (`--color-lagoon-tint`) | `#DDF3EF` | Soft background tint for quick tiles and badges (~12–15% fill). |
+| `sun` (`--color-sun`) | `#F5C842` | Events, community highlights, ratings, delight. |
+| `sun-tint` (`--color-sun-tint`) | `#FFF3D1` | Light callout card fills. |
+| `coral` (`--color-coral`) | `#FF6B4A` | Secondary CTAs, urgency, active highlights, map hot pins. |
+| `coral-tint` (`--color-coral-tint`) | `#FFE6DC` | Soft coral background tint for tiles and tags. |
+| `coral-dark` (`--color-coral-dark`) | `#E8502F` | Higher contrast coral variation for small text or pressed states. |
+| `sand` (`--color-sand`) | `#FFF6EB` | Official default page background. Warm and sunlit, avoiding clinical white. |
+| `charcoal` (`--color-charcoal`) | `#1F2937` | Default copy text, icons, headings on light surfaces (never pure black). |
+| `mist` (`--color-mist`) | `#E5E7EB` | Hairline borders, dividers, disabled states, unselected chips. |
 
-| Token       | Use                             |
-| ----------- | ------------------------------- |
-| Primary     | Main actions and brand elements |
-| Secondary   | Supporting actions              |
-| Accent      | Highlights and gamification     |
-| Background  | Main page surface               |
-| Surface     | Cards and panels                |
-| Muted       | Secondary information           |
-| Success     | Confirmed actions               |
-| Warning     | Expiry and attention            |
-| Destructive | Errors and removal              |
+#### Semantic shadcn/ui Mapping
 
-Final colour values should be confirmed with the brand design.
+The following semantic CSS variables are mapped in `:root` and bound via `@theme inline`:
+
+- `background`: Sand (`#FFF6EB`)
+- `foreground`: Charcoal (`#1F2937`)
+- `card` & `card-foreground`: White (`#FFFFFF`) & Charcoal (`#1F2937`)
+- `popover` & `popover-foreground`: White (`#FFFFFF`) & Charcoal (`#1F2937`)
+- `primary` & `primary-foreground`: Ocean Green (`#073F3B`) & White (`#FFFFFF`)
+- `secondary` & `secondary-foreground`: Coral (`#FF6B4A`) & Charcoal (`#1F2937`) *(accessibility: Charcoal provides WCAG AA contrast on Coral)*
+- `accent` & `accent-foreground`: Lagoon Teal (`#00A896`) & Charcoal (`#1F2937`) *(accessibility: Charcoal provides WCAG AA contrast on Lagoon Teal)*
+- `muted` & `muted-foreground`: Mist (`#E5E7EB`) & Charcoal 65% (`#4B5563`)
+- `border` & `input`: Mist (`#E5E7EB`)
+- `ring`: Lagoon Teal (`#00A896`)
+- `sun` & `sun-foreground`: Sun Yellow (`#F5C842`) & Charcoal (`#1F2937`)
+- `destructive` & `destructive-foreground`: Semantic red (`#DC2626`) & White (`#FFFFFF`) — kept separate from brand Coral.
 
 ### Typography
 
-Use a clear, readable font system.
+Typography is loaded in `app/layout.tsx` via `next/font/google` and exposed as CSS variables:
 
-- Large headings for page titles.
-- Medium-weight section headings.
-- Readable body text.
-- Consistent metadata styles.
+- **Inter** (`--font-inter`): Default sans-serif interface font (`--font-sans`). Used for body copy, UI controls, navigation, and inputs.
+- **Sora** (`--font-sora`): Geometric display sans-serif (`--font-display` / `--font-heading`). Used for hero titles, section headings, and display typography.
 
-Prioritise mobile readability over decorative typography.
+Typographic hierarchy:
+- Hero display: 32–36px, Sora Bold (700)
+- Screen title (H1): 24px, Sora Bold (700)
+- Section / card title (H2): 18–20px, Sora Semibold (600)
+- Card title (H3): 16px, Inter/Sora Semibold (600)
+- Body text: 14–16px, Inter Regular (400)
+- Secondary / meta info: 12–13px, Inter (400–500)
+- Tags / chips / nav: 10–12px, Inter Medium/Semibold (500–600)
 
-### Spacing
+### Shape, Spacing and Elevation
 
-Use a consistent spacing scale through Tailwind.
+- **Base radius:** `--radius: 1.25rem` (20px).
+- **Buttons and chips:** Full pill (`rounded-full`).
+- **Cards:** 20–24px corner radii (`rounded-2xl`).
+- **Quick-action tiles:** 16–20px radii (`rounded-xl` / `rounded-2xl`).
+- **Shadows:** Soft, green-tinted shadows:
+  - `shadow-card`: `0 4px 20px rgba(7, 63, 59, 0.08)`
+  - `shadow-float`: `0 8px 24px rgba(7, 63, 59, 0.12)`
+- **Spacing rhythm:** 4px grid steps (common: 8px, 12px, 16px, 20px, 24px, 32px).
 
-Cards should have enough internal spacing to remain comfortable on mobile.
+### Brand Assets
+
+Official vector artwork and brand assets belong in `public/brand/`:
+- `public/brand/README.md` documents asset guidelines and naming conventions.
+- As of NP-017, official logo and badge vector files are pending delivery. Placeholders or synthesized substitutes must not be used.
+- Browser `themeColor` is set to Ocean Green (`#073F3B`).
+
+### How Future Developers Should Use Tokens
+
+1. **Colors:** Use Tailwind brand tokens directly (`bg-ocean`, `text-charcoal`, `border-mist`, `bg-sand`, `bg-lagoon-tint`) or semantic classes (`bg-primary`, `text-primary-foreground`, `bg-background`). Do not hardcode hex codes.
+2. **Typography:** Body text automatically inherits `font-sans` (Inter). Apply `font-heading` or `font-display` to headings (`<h1 className="font-heading text-2xl font-bold text-ocean">...</h1>`).
+3. **Accessibility:** Avoid small white text on Coral or Lagoon Teal; use Charcoal text or bold text >= 16px. Primary action should pair White text with Ocean Green (`bg-primary text-primary-foreground`).
 
 ## 12. Responsive Design
 
