@@ -1,11 +1,15 @@
 import { Suspense } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 import { Compass, Sparkles } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HeaderNavLinks } from "./HeaderNavLinks";
+import { LanguageSelector } from "./LanguageSelector";
 
-export function AppHeader() {
+export async function AppHeader() {
+  const t = await getTranslations("Navigation");
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/70 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -36,8 +40,16 @@ export function AppHeader() {
           <HeaderNavLinks />
         </Suspense>
 
-        {/* Actions */}
+        {/* Actions & Language Selector */}
         <div className="flex items-center gap-2">
+          <Suspense
+            fallback={
+              <div className="h-7 w-20 rounded-full bg-muted/40 animate-pulse" />
+            }
+          >
+            <LanguageSelector variant="header" />
+          </Suspense>
+
           <Link
             href="/partner"
             className={cn(
@@ -46,7 +58,7 @@ export function AppHeader() {
             )}
           >
             <Sparkles className="h-3.5 w-3.5 text-accent-foreground hidden xs:inline mr-1.5" />
-            <span>Become a Partner</span>
+            <span>{t("partner")}</span>
           </Link>
         </div>
       </div>

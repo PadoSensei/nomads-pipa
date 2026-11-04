@@ -6,7 +6,16 @@
  */
 
 import type { ContactInfo, GeoLocation } from "./businesses";
-import type { EventLifecycleStatus, VisibilityStatus } from "./status";
+import type { ContentLocale, EventLifecycleStatus, VisibilityStatus } from "./status";
+
+/**
+ * Optional localized translations for event listings.
+ */
+export interface EventListingTranslation {
+  title?: string;
+  description?: string;
+  priceDescription?: string;
+}
 
 /**
  * Event classification.
@@ -85,6 +94,9 @@ export interface EventListing {
 
   // Demarcation for demo fixtures
   isDemo?: boolean;
+
+  // Optional localized content per supported locale
+  translations?: Partial<Record<ContentLocale, EventListingTranslation>>;
 
   createdAt: string;
   updatedAt: string;

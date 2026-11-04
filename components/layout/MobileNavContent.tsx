@@ -1,20 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { Compass, LayoutGrid, CalendarDays, Users, Info } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const mobileDestinations = [
-  { href: "/", label: "Explore", icon: Compass },
-  { href: "/categories", label: "Categories", icon: LayoutGrid },
-  { href: "/events", label: "Events", icon: CalendarDays },
-  { href: "/community", label: "Community", icon: Users },
-  { href: "/about", label: "About", icon: Info },
-];
-
 export function MobileNavContent() {
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
+
+  const mobileDestinations = [
+    { href: "/", label: t("explore"), icon: Compass },
+    { href: "/categories", label: t("categories"), icon: LayoutGrid },
+    { href: "/events", label: t("events"), icon: CalendarDays },
+    { href: "/community", label: t("community"), icon: Users },
+    { href: "/about", label: t("about"), icon: Info },
+  ];
 
   return (
     <nav

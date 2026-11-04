@@ -1,19 +1,21 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { href: "/", label: "Explore" },
-  { href: "/categories", label: "Categories" },
-  { href: "/events", label: "Events" },
-  { href: "/community", label: "Community" },
-  { href: "/about", label: "About" },
-];
 
 export function HeaderNavLinks() {
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
+
+  const navLinks = [
+    { href: "/", label: t("explore") },
+    { href: "/categories", label: t("categories") },
+    { href: "/events", label: t("events") },
+    { href: "/community", label: t("community") },
+    { href: "/about", label: t("about") },
+  ];
 
   return (
     <nav

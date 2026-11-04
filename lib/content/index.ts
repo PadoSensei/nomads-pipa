@@ -11,3 +11,4 @@ export * from "./businesses";
 export * from "./events";
 export * from "./essential-services";
 export * from "./demo-fixtures";
+export * from "./localization";

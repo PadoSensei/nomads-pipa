@@ -38,6 +38,7 @@ The product should feel like a useful local companion rather than a conventional
 | Technology          | Responsibility                            |
 | ------------------- | ----------------------------------------- |
 | Next.js App Router  | Routing, rendering, and server-side logic |
+| next-intl           | Internationalisation and localized routing|
 | TypeScript          | Type safety                               |
 | Tailwind CSS        | Styling and responsive layouts            |
 | shadcn/ui           | Accessible reusable UI components         |
@@ -116,7 +117,19 @@ src/
 
 Route groups in parentheses organise the application without adding URL segments.
 
-The actual URL structure should remain simple and predictable.
+### 4.1 Internationalisation and Localised Routing (NP-016)
+
+All user-facing routes are internationalised with explicit locale prefixes using `next-intl`:
+- English: `/en/...` (Default locale)
+- Brazilian Portuguese: `/pt-BR/...`
+- Spanish: `/es/...`
+
+**Routing Rules:**
+- The proxy (`proxy.ts` / Next.js 16 standard) handles request negotiation based on browser `Accept-Language` headers and `NEXT_LOCALE` cookies, redirecting `/` to the negotiated locale with `localePrefix: 'always'`. Geolocation is never used for locale detection.
+- App Router layout is rooted at `app/[locale]/layout.tsx`, statically prerendering all supported locales via `generateStaticParams()`.
+- Translation dictionaries live in separate files under `messages/en.json`, `messages/pt-BR.json`, and `messages/es.json`, strictly typed via `types/global.d.ts` module augmentation for compile-time key safety.
+- The `LanguageSelector` component provides an accessible dropdown in `AppHeader` and inline switches in `AppFooter`, preserving the current active subpath when changing languages.
+- Locale-aware formatting utilities (`lib/formatters.ts`) format BRL currency, numbers, and dates anchored to the `America/Fortaleza` timezone.
 
 ## 5. Navigation Architecture
 

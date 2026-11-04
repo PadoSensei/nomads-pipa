@@ -107,6 +107,21 @@ export interface ContextualTag {
 /**
  * Category metadata interface.
  */
+import type { ContentLocale } from "./status";
+
+/**
+ * Optional localized translations for discovery categories.
+ */
+export interface CategoryTranslation {
+  name?: string;
+  tagline?: string;
+  description?: string;
+  highlightBadge?: string;
+}
+
+/**
+ * Category metadata interface.
+ */
 export interface DiscoveryCategory {
   slug: CategorySlug;
   name: string;
@@ -115,6 +130,7 @@ export interface DiscoveryCategory {
   highlightBadge: string;
   displayOrder: number;
   isActive: boolean;
+  translations?: Partial<Record<ContentLocale, CategoryTranslation>>;
 }
 
 /**
