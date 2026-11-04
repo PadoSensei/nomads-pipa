@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Info, Users, Compass, ShieldCheck } from "lucide-react";
+import { Users, Compass } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
