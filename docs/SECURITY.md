@@ -1,7 +1,7 @@
 # Security Architecture
 
 **Project:** Nomads Pipa  
-**Document:** `architecture/SECURITY.md`  
+**Document:** `docs/SECURITY.md`
 **Status:** Draft  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 
@@ -470,7 +470,7 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
 SUPABASE_SERVICE_ROLE_KEY=
-QR_TOKEN_SIGNING_SECRET=
+QR_SIGNING_SECRET=
 ```
 
 The service-role key and signing secret must only be available in trusted server environments.

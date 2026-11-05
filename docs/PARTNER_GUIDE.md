@@ -1,6 +1,6 @@
 # Nomads Pipa — Partner Guide
 
-**Document:** `product/PARTNER_GUIDE.md`  
+**Document:** `docs/PARTNER_GUIDE.md`
 **Audience:** Business owners, managers, and authorized staff  
 **Status:** Product documentation  
 **Platform:** Nomads Pipa PWA

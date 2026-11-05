@@ -1,7 +1,7 @@
 # Features Catalogue
 
 **Project:** Nomads Pipa  
-**File:** `product/FEATURES.md`  
+**File:** `docs/FEATURES.md`
 **Status:** Draft  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 

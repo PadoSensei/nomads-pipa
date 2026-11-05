@@ -193,7 +193,6 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 NEXT_PUBLIC_MAP_PROVIDER_KEY=your-map-api-key
 
 # QR Token Security (Planned)
-# Note: Named QR_SIGNING_SECRET in DEPLOYMENT.md / QR_TOKEN_SIGNING_SECRET in SECURITY.md
 QR_SIGNING_SECRET=your-secure-random-secret
 
 # Analytics & Integrations (Optional / Later Phases)
@@ -219,14 +218,15 @@ The following scripts are configured in `package.json`:
 | `pnpm build` | Compiles the production build via Next.js and runs TypeScript type checking |
 | `pnpm start` | Runs the compiled production server |
 | `pnpm lint` | Runs ESLint over the repository code |
+| `pnpm typecheck` | Runs TypeScript compiler checks without emitting files |
+| `pnpm test` | Runs unit and component test suites with Vitest |
 
-### Testing Strategy (Planned)
+### Testing Strategy
 
 The project specifications in [`docs/TESTING.md`](docs/TESTING.md) outline a Test-Driven Development (TDD) approach:
-- **Unit & Component Testing**: Vitest and React Testing Library for UI components and utility functions.
-- **End-to-End Testing**: Playwright for end-to-end user journeys (nomad discovery, QR redemption, partner portal).
-
-*Note: Test runners and scripts (`pnpm test`, `pnpm test:e2e`) are detailed in [`docs/TESTING.md`](docs/TESTING.md) and will be added to `package.json` when test frameworks are installed.*
+- **Unit & Component Testing**: Active. Vitest and React Testing Library run unit and component suites via `pnpm test`.
+- **End-to-End Testing (Planned)**: Playwright for end-to-end user journeys (nomad discovery, QR redemption, partner portal).
+- **Continuous Integration**: Active. GitHub Actions CI runs lint, typecheck, tests, and build on pull requests and pushes to `master`.
 
 ---
 
@@ -282,15 +282,11 @@ During review of the repository specifications, the following discrepancies and 
 1. **Document Header Path References vs. Repository Reality**:
    - Multiple Markdown files in `docs/` contain front-matter or header paths pointing to subfolders such as `architecture/<NAME>.md` or `product/<NAME>.md` (for example, `API_Architecture.md` cites `architecture/API.md`, `DATABASE.md` cites `architecture/DATABASE.md`, `PRD.md` lacks a header path).
    - In the repository, all 22 documents are placed flat directly inside `docs/`.
-2. **Environment Variable Naming for QR Signing**:
-   - `docs/DEPLOYMENT.md` specifies `QR_SIGNING_SECRET` for HMAC-SHA256 signature verification.
-   - `docs/SECURITY.md` references `QR_TOKEN_SIGNING_SECRET` for signing time-limited redemption payloads.
-   - *Resolution recommendation*: Standardize on `QR_SIGNING_SECRET` across both files and code.
-3. **Documented Scripts vs. Configured Scripts in `package.json`**:
-   - `docs/TESTING.md` specifies npm scripts (`"test": "vitest run"`, `"test:watch": "vitest"`, `"test:coverage": "vitest run --coverage"`, `"test:e2e": "playwright test"`) and config files (`vitest.config.ts`, `playwright.config.ts`).
-   - `package.json` currently only defines `dev`, `build`, `start`, and `lint`. Vitest, Playwright, and test configurations have not yet been installed.
-4. **Dependencies Documented vs. Installed**:
-   - Several architecture documents reference `@supabase/supabase-js`, `@supabase/ssr`, and testing libraries as active stack dependencies.
-   - The current `package.json` only contains Next.js, React 19, Tailwind CSS v4, Lucide, and Base UI / shadcn dependencies. Supabase packages must be added when backend implementation begins.
-5. **Pre-existing Lint Warning in UI Library**:
+2. **Testing and Verification Status**:
+   - Vitest unit and integration test runner (`pnpm test`), TypeScript checking (`pnpm typecheck`), and GitHub Actions CI workflow are now active and enforced.
+   - End-to-end testing with Playwright (`pnpm test:e2e`) remains planned and is not yet configured.
+3. **Dependencies Documented vs. Installed**:
+   - Several architecture documents reference `@supabase/supabase-js` and `@supabase/ssr` as active stack dependencies.
+   - The current `package.json` only contains Next.js, React 19, Tailwind CSS v4, Lucide, Base UI / shadcn dependencies, and testing tools. Supabase packages must be added when backend implementation begins.
+4. **Pre-existing Lint Warning in UI Library**:
    - Running `pnpm lint` reveals an existing `react-hooks/set-state-in-effect` rule violation inside `components/ui/carousel.tsx` (`onSelect(api)` called synchronously inside `useEffect`), which is a generated shadcn component. This should be addressed when customizing UI primitives.

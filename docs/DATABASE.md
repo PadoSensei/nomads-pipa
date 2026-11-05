@@ -1,6 +1,6 @@
 # Nomads Pipa — Database Architecture
 
-**File:** `architecture/DATABASE.md`  
+**File:** `docs/DATABASE.md`
 **Version:** 1.0  
 **Status:** Draft  
 **Database:** Supabase PostgreSQL  

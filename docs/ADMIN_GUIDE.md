@@ -1,7 +1,7 @@
 # Admin Guide
 
 **Project:** Nomads Pipa  
-**Document:** `product/ADMIN_GUIDE.md`  
+**Document:** `docs/ADMIN_GUIDE.md`
 **Status:** Implementation-ready baseline  
 **Audience:** Platform administrators and authorized operators
 

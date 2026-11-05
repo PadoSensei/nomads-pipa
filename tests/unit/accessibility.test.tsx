@@ -4,10 +4,13 @@ import { CalendarDays } from "lucide-react";
 import type { ReactElement } from "react";
 import { describe, expect, it, vi } from "vitest";
 
+import LocaleLayout from "@/app/[locale]/layout";
 import { HeaderNavLinks } from "@/components/layout/HeaderNavLinks";
 import { MobileNavContent } from "@/components/layout/MobileNavContent";
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
-import messages from "@/messages/en.json"; // adjust if your messages live elsewhere
+import messagesEn from "@/messages/en.json";
+import messagesEs from "@/messages/es.json";
+import messagesPtBr from "@/messages/pt-BR.json";
 
 // One shared mock so both the plain Next hook and the locale-aware hook
 // (next-intl's usePathname, which returns the path without the locale prefix)
@@ -32,11 +35,51 @@ vi.mock("@/i18n/navigation", async (importOriginal) => {
 
 function renderWithIntl(ui: ReactElement) {
   return render(
-    <NextIntlClientProvider locale="en" messages={messages}>
+    <NextIntlClientProvider locale="en" messages={messagesEn}>
       {ui}
     </NextIntlClientProvider>
   );
 }
+
+// Mock fonts used in layout
+vi.mock("next/font/google", () => ({
+  Inter: () => ({ variable: "--font-inter" }),
+  Sora: () => ({ variable: "--font-sora" }),
+}));
+
+vi.mock("@/components/layout/AppHeader", () => ({
+  AppHeader: () => <header data-testid="mock-app-header" />,
+}));
+
+vi.mock("@/components/layout/AppFooter", () => ({
+  AppFooter: () => <footer data-testid="mock-app-footer" />,
+}));
+
+vi.mock("@/components/layout/MobileBottomNav", () => ({
+  MobileBottomNav: () => <nav data-testid="mock-mobile-bottom-nav" />,
+}));
+
+vi.mock("next-intl/server", () => ({
+  getTranslations: vi.fn(
+    async ({ locale, namespace }: { locale?: string; namespace?: string } = {}) => {
+      const allMessages: Record<string, Record<string, unknown>> = {
+        en: messagesEn,
+        "pt-BR": messagesPtBr,
+        es: messagesEs,
+      };
+      const activeLocale = locale || "en";
+      const localeDict = allMessages[activeLocale] || messagesEn;
+      const nsDict = (namespace ? localeDict[namespace] : localeDict) as
+        | Record<string, unknown>
+        | undefined;
+
+      return (key: string) => {
+        const val = nsDict?.[key];
+        return typeof val === "string" ? val : key;
+      };
+    }
+  ),
+}));
 
 describe("Accessibility & Responsive QA Unit Tests", () => {
   describe("HeaderNavLinks", () => {
@@ -110,5 +153,38 @@ describe("Accessibility & Responsive QA Unit Tests", () => {
       const backLink = screen.getByRole("link", { name: /back to explore/i });
       expect(backLink).toBeInTheDocument();
     });
+  });
+
+  describe("Skip-to-content Link (NP-020)", () => {
+    it.each([
+      { locale: "en", expectedText: messagesEn.Common.skipToContent },
+      { locale: "pt-BR", expectedText: messagesPtBr.Common.skipToContent },
+      { locale: "es", expectedText: messagesEs.Common.skipToContent },
+    ])(
+      "renders exactly one skip link with correct translation for $locale",
+      async ({ locale, expectedText }) => {
+        const { renderToStaticMarkup } = await import("react-dom/server");
+
+        const layoutElement = await LocaleLayout({
+          children: <div data-testid="page-child">Test content</div>,
+          params: Promise.resolve({ locale }),
+        });
+
+        const html = renderToStaticMarkup(layoutElement);
+        const div = document.createElement("div");
+        div.innerHTML = html;
+
+        const skipLinks = div.querySelectorAll('a[href="#main-content"]');
+        expect(skipLinks).toHaveLength(1);
+
+        const skipLink = skipLinks[0] as HTMLAnchorElement;
+        expect(skipLink.textContent).toBe(expectedText);
+        expect(skipLink.getAttribute("href")).toBe("#main-content");
+
+        const mainLandmark = div.querySelector("#main-content");
+        expect(mainLandmark).not.toBeNull();
+        expect(mainLandmark?.tagName.toLowerCase()).toBe("main");
+      }
+    );
   });
 });

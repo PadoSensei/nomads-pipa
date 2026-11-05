@@ -1,6 +1,6 @@
 # Nomads Pipa — Background Jobs & Scheduled Tasks
 
-**Document:** `architecture/BACKGROUND_JOBS.md`  
+**Document:** `docs/BACKGROUND_JOBS.md`
 **Status:** Technical specification  
 **Stack:** Next.js, TypeScript, Supabase, PostgreSQL  
 **Timezone:** `America/Fortaleza` for Pipa-local scheduling; timestamps stored in UTC.

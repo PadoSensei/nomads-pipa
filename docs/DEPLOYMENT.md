@@ -1,7 +1,7 @@
 # Deployment Guide
 
 **Project:** Nomads Pipa  
-**Document:** `architecture/DEPLOYMENT.md`  
+**Document:** `docs/DEPLOYMENT.md`
 **Status:** Implementation-ready baseline  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 

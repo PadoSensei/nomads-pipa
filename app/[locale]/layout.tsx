@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Inter, Sora } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { routing } from "@/i18n/routing";
@@ -120,6 +121,7 @@ export default async function LocaleLayout({
   }
 
   const messages = (await import(`@/messages/${locale}.json`)).default;
+  const tCommon = await getTranslations({ locale, namespace: "Common" });
 
   return (
     <html
@@ -133,18 +135,12 @@ export default async function LocaleLayout({
       )}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-        >
-          Skip to main content
-        </a>
         <NextIntlClientProvider messages={messages} locale={locale}>
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
-            Skip to main content
+            {tCommon("skipToContent")}
           </a>
           <AppHeader />
           <main

@@ -1,7 +1,7 @@
 # Product Roadmap
 
 **Project:** Nomads Pipa  
-**File:** `product/ROADMAP.md`  
+**File:** `docs/ROADMAP.md`
 **Status:** Proposed  
 **Development approach:** Solo developer, iterative delivery  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase

@@ -1,6 +1,6 @@
 # Nomads Pipa — System Architecture
 
-**File:** `architecture/SYSTEM_ARCHITECTURE.md`  
+**File:** `docs/SYSTEM_ARCHITECTURE.md`
 **Version:** 1.0  
 **Status:** Draft  
 **Last updated:** 2026-11-02

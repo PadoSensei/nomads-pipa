@@ -1,7 +1,7 @@
 # Integrations Architecture
 
 **Project:** Nomads Pipa  
-**Document:** `architecture/INTEGRATIONS.md`  
+**Document:** `docs/INTEGRATIONS.md`
 **Status:** Implementation-ready baseline  
 **Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui, Supabase
 
