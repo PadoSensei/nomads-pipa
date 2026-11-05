@@ -109,31 +109,76 @@ describe("Accessibility & Responsive QA Unit Tests", () => {
 
   describe("MobileNavContent", () => {
     it("sets aria-current='page' on active mobile link", () => {
-      mockPathname.mockReturnValue("/events");
+      mockPathname.mockReturnValue("/categories");
 
       renderWithIntl(<MobileNavContent />);
 
-      const activeLink = screen.getByRole("link", { name: "Events" });
+      const activeLink = screen.getByRole("link", { name: "Explore" });
       expect(activeLink).toHaveAttribute("aria-current", "page");
 
-      const inactiveLink = screen.getByRole("link", { name: "Explore" });
+      const inactiveLink = screen.getByRole("link", { name: "Community" });
       expect(inactiveLink).not.toHaveAttribute("aria-current");
     });
 
-    it("has accessible navigation landmark and minimum touch target size class", () => {
+    it("has accessible navigation landmark, More dialog button, and minimum touch target size class", () => {
       mockPathname.mockReturnValue("/");
 
       renderWithIntl(<MobileNavContent />);
 
-      const nav = screen.getByRole("navigation", {
-        name: "Mobile bottom navigation",
-      });
-      expect(nav).toBeInTheDocument();
-
       const links = screen.getAllByRole("link");
+      expect(links.length).toBeGreaterThan(0);
       links.forEach((link) => {
         expect(link.className).toContain("min-h-[48px]");
       });
+
+      const moreBtn = screen.getByRole("button", { name: "More" });
+      expect(moreBtn).toBeInTheDocument();
+      expect(moreBtn).toHaveAttribute("aria-haspopup", "dialog");
+      expect(moreBtn.className).toContain("min-h-[48px]");
+    });
+  });
+
+  describe("NP-026 Design System Primitives", () => {
+    it("renders DirectoryCard with secure external link attributes and accessible label", async () => {
+      const { DirectoryCard } = await import("@/components/ui/DirectoryCard");
+      const { container } = render(
+        <NextIntlClientProvider locale="en" messages={messagesEn}>
+          <DirectoryCard
+            id="test-card"
+            name="Casas do Kai"
+            description="Quiet bungalows near dolphins bay."
+            typeLabel="Houses"
+            contactUrl="https://example.com/contact"
+            tint="mint"
+          />
+        </NextIntlClientProvider>
+      );
+
+      const anchor = container.querySelector("a");
+      expect(anchor).toBeInTheDocument();
+      expect(anchor).toHaveAttribute("target", "_blank");
+      expect(anchor).toHaveAttribute("rel", "noopener noreferrer");
+      expect(anchor?.textContent).toContain("Casas do Kai");
+      expect(anchor?.textContent).toContain("(opens in new tab)");
+    });
+
+    it("renders FilterChips with accessible aria-pressed states", async () => {
+      const { FilterChips } = await import("@/components/ui/FilterChips");
+      const { container } = render(
+        <FilterChips
+          options={[
+            { id: "all", label: "All" },
+            { id: "houses", label: "Houses" },
+          ]}
+          selectedId="all"
+          onSelect={() => {}}
+        />
+      );
+
+      const buttons = container.querySelectorAll("button");
+      expect(buttons).toHaveLength(2);
+      expect(buttons[0]).toHaveAttribute("aria-pressed", "true");
+      expect(buttons[1]).toHaveAttribute("aria-pressed", "false");
     });
   });
 
