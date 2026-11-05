@@ -202,14 +202,6 @@ async function CategoryContent({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
-  if (slug === "accommodation") {
-    const { AccommodationDirectoryView } = await import(
-      "@/components/discovery/AccommodationDirectoryView"
-    );
-    return <AccommodationDirectoryView />;
-  }
-
   const category = CATEGORY_MAP[slug];
 
   if (!category) {

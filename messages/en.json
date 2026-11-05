@@ -25,12 +25,7 @@
     "events": "Events",
     "community": "Community",
     "about": "About",
-    "partner": "Become a Partner",
-    "home": "Home",
-    "saved": "Saved",
-    "more": "More",
-    "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "partner": "Become a Partner"
   },
   "Homepage": {
     "heroBadge": "The Digital Hub for Praia da Pipa",
@@ -117,47 +112,5 @@
     "all": "All",
     "submit": "Submit",
     "reset": "Reset"
-  },
-  "HomeHero": {
-    "headline": "Feel at home\\nin Pipa.",
-    "subline": "A community for digital nomads, travelers and locals.",
-    "searchPlaceholder": "What are you looking for?",
-    "searchAriaLabel": "Search categories and listings",
-    "badgeAlt": "Nomads Pipa Badge"
-  },
-  "QuickActions": {
-    "stay": "Stay",
-    "staySub": "Accommodation",
-    "transport": "Transport",
-    "transportSub": "Get around",
-    "events": "Events",
-    "eventsSub": "What's on",
-    "food": "Food & Drink",
-    "foodSub": "Eat, drink, chill"
-  },
-  "Directory": {
-    "disclaimerTitle": "Direct Contact Directory",
-    "disclaimer": "Browse local contacts and inquire directly. No availability or prices are guaranteed.",
-    "filterAll": "All",
-    "filterHouses": "Houses",
-    "filterHostels": "Hostels",
-    "filterRealEstate": "Real Estate",
-    "externalLink": "Contact externally",
-    "opensInNewTab": "(opens in new tab)"
-  },
-  "Blog": {
-    "title": "Blog",
-    "subtitle": "Guides, stories, and tips for living and working from Pipa.",
-    "filterAll": "All",
-    "filterMoveToPipa": "Move to Pipa",
-    "filterLifestyle": "Lifestyle",
-    "filterGuides": "Guides",
-    "readTime": "{minutes} min read"
-  },
-  "Saved": {
-    "title": "Saved Items",
-    "subtitle": "Saved places, stays, and events in Pipa will appear here.",
-    "emptyMessage": "No saved items yet. Browse categories or events to save your favorite contacts locally.",
-    "exploreCta": "Explore Categories"
   }
 }

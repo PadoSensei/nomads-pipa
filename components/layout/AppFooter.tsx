@@ -8,7 +8,7 @@ export async function AppFooter() {
   const tCommon = await getTranslations("Common");
 
   return (
-    <footer className="border-t border-border/80 bg-muted/40 pb-24 pt-10 md:py-14">
+    <footer className="border-t border-border/80 bg-muted/40 py-10 md:py-14">
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand Col */}
