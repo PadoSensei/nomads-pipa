@@ -182,17 +182,18 @@ A business can be publicly listed without being a paid partner.
 | logo_url        | TEXT, nullable    | Business logo.                             |
 | opening_hours   | JSONB             | Structured opening hours.                  |
 | price_level     | TEXT, nullable    | Optional price classification.             |
-| listing_status  | TEXT              | Draft, published, archived.                |
-| partner_status  | TEXT              | Non-partner, pending, approved, suspended. |
-| is_verified     | BOOLEAN           | Whether listing has been verified.         |
-| created_at      | TIMESTAMPTZ       | Creation timestamp.                        |
-| updated_at      | TIMESTAMPTZ       | Last update timestamp.                     |
+| listing_status      | TEXT              | Draft, pending review, published, archived.|
+| partner_status      | TEXT              | Non-partner, pending, approved, suspended. |
+| verification_status | TEXT              | Unverified, pending verification, verified.|
+| visibility          | TEXT              | Public, members only, hidden.              |
+| created_at          | TIMESTAMPTZ       | Creation timestamp.                        |
+| updated_at          | TIMESTAMPTZ       | Last update timestamp.                     |
 
 ### Important rules
 
 - `slug` must be unique.
-- Only published listings should be visible publicly.
-- Partner status and listing status are separate concepts.
+- Only published listings with public visibility should be visible publicly.
+- Partner status, listing status, verification status, and audience visibility are strictly decoupled concepts.
 - An approved partner does not automatically mean every business detail is verified.
 - Location coordinates should be validated before publication.
 
@@ -207,6 +208,7 @@ create table public.businesses (
     description text,
 
     category_id uuid references public.categories(id),
+    subcategory text,
 
     address text,
     latitude numeric(10, 7),
@@ -214,6 +216,7 @@ create table public.businesses (
 
     whatsapp text,
     phone text,
+    email text,
     website text,
     instagram text,
 
@@ -221,15 +224,24 @@ create table public.businesses (
     logo_url text,
     opening_hours jsonb not null default '{}'::jsonb,
 
-    price_level text,
+    price_level text check (price_level is null or price_level in ('$', '$$', '$$$', '$$$$')),
 
     listing_status text not null default 'draft'
-        check (listing_status in ('draft', 'published', 'archived')),
+        check (listing_status in ('draft', 'pending_review', 'published', 'archived')),
 
     partner_status text not null default 'none'
         check (partner_status in ('none', 'pending', 'approved', 'suspended')),
 
-    is_verified boolean not null default false,
+    verification_status text not null default 'unverified'
+        check (verification_status in ('unverified', 'pending_verification', 'verified')),
+
+    visibility text not null default 'public'
+        check (visibility in ('public', 'members_only', 'hidden')),
+
+    has_wifi boolean not null default false,
+    has_power_outlets boolean not null default false,
+    is_pet_friendly boolean not null default false,
+    is_demo boolean not null default false,
 
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now(),
@@ -1156,11 +1168,14 @@ Restrict writable columns through carefully designed database grants, restricted
 Public users may read published listings:
 
 ```sql
-create policy "Public can read published businesses"
+create policy "Published businesses are viewable by everyone"
 on public.businesses
 for select
 to anon, authenticated
-using (listing_status = 'published');
+using (
+    listing_status = 'published'
+    and visibility = 'public'
+);
 ```
 
 Additional policies should permit authorised partner members and administrators to access the records they manage.
