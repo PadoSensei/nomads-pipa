@@ -25,12 +25,7 @@
     "events": "Eventos",
     "community": "Comunidad",
     "about": "Acerca de",
-    "partner": "Hazte Socio",
-    "home": "Inicio",
-    "saved": "Guardados",
-    "more": "Más",
-    "openMenu": "Abrir menú",
-    "closeMenu": "Cerrar menú"
+    "partner": "Hazte Colaborador"
   },
   "Homepage": {
     "heroBadge": "El Hub Digital de Praia da Pipa",
@@ -117,47 +112,5 @@
     "all": "Todos",
     "submit": "Enviar",
     "reset": "Restablecer"
-  },
-  "HomeHero": {
-    "headline": "Siéntete como en casa\\nen Pipa.",
-    "subline": "Una comunidad para nómadas digitales, viajeros y residentes.",
-    "searchPlaceholder": "¿Qué estás buscando?",
-    "searchAriaLabel": "Buscar categorías y contactos",
-    "badgeAlt": "Insignia Nomads Pipa"
-  },
-  "QuickActions": {
-    "stay": "Alojamiento",
-    "staySub": "Dónde alojarse",
-    "transport": "Transporte",
-    "transportSub": "Cómo moverse",
-    "events": "Eventos",
-    "eventsSub": "Qué hacer",
-    "food": "Comer y Beber",
-    "foodSub": "Gastronomía y relax"
-  },
-  "Directory": {
-    "disclaimerTitle": "Directorio de Contacto Directo",
-    "disclaimer": "Consulta contactos locales y comunícate directamente. No se garantizan disponibilidad ni precios.",
-    "filterAll": "Todos",
-    "filterHouses": "Casas",
-    "filterHostels": "Hostales",
-    "filterRealEstate": "Inmobiliarias",
-    "externalLink": "Contactar externamente",
-    "opensInNewTab": "(se abre en una nueva pestaña)"
-  },
-  "Blog": {
-    "title": "Blog",
-    "subtitle": "Guías, artículos y consejos para vivir y trabajar desde Pipa.",
-    "filterAll": "Todos",
-    "filterMoveToPipa": "Mudarse a Pipa",
-    "filterLifestyle": "Estilo de Vida",
-    "filterGuides": "Guías",
-    "readTime": "{minutes} min de lectura"
-  },
-  "Saved": {
-    "title": "Elementos Guardados",
-    "subtitle": "Lugares, estancias y eventos guardados en Pipa aparecerán aquí.",
-    "emptyMessage": "No tienes elementos guardados todavía. Explora categorías o eventos para guardar tus contactos favoritos localmente.",
-    "exploreCta": "Explorar Categorías"
   }
 }

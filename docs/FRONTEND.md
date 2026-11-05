@@ -629,14 +629,6 @@ Build shared components early.
 | `LoadingState`    | Loading feedback        |
 | `SearchBar`       | Discovery search        |
 | `FilterPanel`     | Category filters        |
-| `HeroHeader`      | Transparent mobile hero top bar with circular badge, language pill & menu |
-| `TopBar`          | Subpage top bar with back chevron, title, and right action/filter |
-| `SearchPill`      | Search pill input overlapping hero with soft float shadow |
-| `QuickActionTile` | 2x2 tinted action tiles (mint, aqua, peach, yellow) with icons and subtitles |
-| `FilterChips`     | Accessible horizontal filter chips with `aria-pressed` states |
-| `DirectoryCard`   | List row card with icon tile, name, description, category tag, external link |
-| `MediaListRow`    | Blog/guide article row card with rounded image thumbnail and read time |
-| `NavSheet`        | Accessible slide-out navigation drawer with focus trapping and ESC support |
 
 Use shadcn/ui primitives where appropriate rather than creating custom controls for everything.
 
@@ -672,10 +664,6 @@ The Nomads Pipa design system is defined using Tailwind CSS v4 `@theme inline` i
 | `sand` (`--color-sand`) | `#FFF6EB` | Official default page background. Warm and sunlit, avoiding clinical white. |
 | `charcoal` (`--color-charcoal`) | `#1F2937` | Default copy text, icons, headings on light surfaces (never pure black). |
 | `mist` (`--color-mist`) | `#E5E7EB` | Hairline borders, dividers, disabled states, unselected chips. |
-| `tint-mint` (`--color-tint-mint`) | `#DCF2EA` | Quick action tile background for Stay / Accommodation. |
-| `tint-aqua` (`--color-tint-aqua`) | `#D5F0F3` | Quick action tile background for Transport / Get around. |
-| `tint-peach` (`--color-tint-peach`) | `#FFE0D6` | Quick action tile background for Events / What's on. |
-| `tint-yellow` (`--color-tint-yellow`) | `#FFEEBD` | Quick action tile background for Food & Drink / Chill. |
 
 #### Semantic shadcn/ui Mapping
 

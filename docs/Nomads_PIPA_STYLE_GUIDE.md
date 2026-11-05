@@ -39,11 +39,6 @@
 
 **Supporting tints observed in the mockups (derive, don't hard-code unless matching exactly)**
 
-- Quick action tile tints sampled from Netlify client mockup (NP-026):
-  - Mint tint: `#DCF2EA` (`--color-tint-mint`) for Stay / Accommodation
-  - Aqua tint: `#D5F0F3` (`--color-tint-aqua`) for Transport / Get around
-  - Peach tint: `#FFE0D6` (`--color-tint-peach`) for Events / What's on
-  - Yellow tint: `#FFEEBD` (`--color-tint-yellow`) for Food & Drink / Eat, drink, chill
 - Teal tint for quick-action tiles: ~`#DDF3EF` (lagoon at ~12–15% on sand/white) with a thin teal border.
 - Coral/peach tint for quick-action tiles: ~`#FFE6DC` (coral at ~12–15%) with a thin coral border.
 - Yellow tint for "Good to know" callout card: ~`#FFF3D1` (sun at ~20%).

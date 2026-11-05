@@ -17,10 +17,6 @@
   --color-sand: #FFF6EB;
   --color-charcoal: #1F2937;
   --color-mist: #E5E7EB;
-  --color-tint-mint: #DCF2EA;
-  --color-tint-aqua: #D5F0F3;
-  --color-tint-peach: #FFE0D6;
-  --color-tint-yellow: #FFEEBD;
 
   /* Typography */
   --font-sans: var(--font-inter), system-ui, sans-serif;
