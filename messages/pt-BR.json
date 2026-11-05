@@ -25,7 +25,12 @@
     "events": "Eventos",
     "community": "Comunidade",
     "about": "Sobre",
-    "partner": "Seja um Parceiro"
+    "partner": "Seja um Parceiro",
+    "home": "Início",
+    "saved": "Salvos",
+    "more": "Mais",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
   },
   "Homepage": {
     "heroBadge": "O Hub Digital da Praia da Pipa",
@@ -112,5 +117,47 @@
     "all": "Todos",
     "submit": "Enviar",
     "reset": "Limpar"
+  },
+  "HomeHero": {
+    "headline": "Sinta-se em casa\\nem Pipa.",
+    "subline": "Uma comunidade para nômades digitais, viajantes e moradores.",
+    "searchPlaceholder": "O que você está procurando?",
+    "searchAriaLabel": "Pesquisar categorias e locais",
+    "badgeAlt": "Emblema Nomads Pipa"
+  },
+  "QuickActions": {
+    "stay": "Hospedagem",
+    "staySub": "Onde ficar",
+    "transport": "Transporte",
+    "transportSub": "Como se locomover",
+    "events": "Eventos",
+    "eventsSub": "O que está rolando",
+    "food": "Comer & Beber",
+    "foodSub": "Restaurantes e bares"
+  },
+  "Directory": {
+    "disclaimerTitle": "Guia de Contatos Diretos",
+    "disclaimer": "Consulte contatos locais e tire dúvidas diretamente. Valores e disponibilidade não são garantidos.",
+    "filterAll": "Todos",
+    "filterHouses": "Casas",
+    "filterHostels": "Hostels",
+    "filterRealEstate": "Imobiliárias",
+    "externalLink": "Entrar em contato externamente",
+    "opensInNewTab": "(abre em nova aba)"
+  },
+  "Blog": {
+    "title": "Blog",
+    "subtitle": "Guias, relatos e dicas para viver e trabalhar de Pipa.",
+    "filterAll": "Todos",
+    "filterMoveToPipa": "Morar em Pipa",
+    "filterLifestyle": "Estilo de Vida",
+    "filterGuides": "Guias",
+    "readTime": "{minutes} min de leitura"
+  },
+  "Saved": {
+    "title": "Itens Salvos",
+    "subtitle": "Lugares, acomodações e eventos salvos em Pipa aparecerão aqui.",
+    "emptyMessage": "Nenhum item salvo ainda. Explore categorias ou eventos para salvar seus contatos favoritos localmente.",
+    "exploreCta": "Explorar Categorias"
   }
 }
