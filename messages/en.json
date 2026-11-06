@@ -112,5 +112,58 @@
     "all": "All",
     "submit": "Submit",
     "reset": "Reset"
+  },
+  "Directory": {
+    "partnerBadge": "Partner",
+    "verifiedBadge": "Verified",
+    "unverifiedBadge": "Unverified",
+    "wifiSpeed": "{speed} Mbps",
+    "powerOutlets": "Power Outlets",
+    "quietSpace": "Quiet Space",
+    "petFriendly": "Pet Friendly",
+    "allSubcategories": "All Subcategories",
+    "filterByTag": "Filter by Intent",
+    "clearFilters": "Clear filters",
+    "noFilteredResults": "No businesses found matching your active filters.",
+    "openingHoursTitle": "Opening Hours",
+    "openingHoursClosed": "Closed",
+    "contactWhatsApp": "WhatsApp Enquiries",
+    "viewInstagram": "Instagram",
+    "openGoogleMaps": "Google Maps Directions",
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "tags": {
+      "wifi": "Wi-Fi",
+      "power-outlets": "Power Outlets",
+      "daily-meal-pf": "Daily Meal (PF)",
+      "sunset-views": "Sunset Views",
+      "remote-work-friendly": "Remote Work Friendly",
+      "quiet-space": "Quiet Space",
+      "pet-friendly": "Pet Friendly",
+      "ocean-view": "Ocean View",
+      "date-night": "Date Night",
+      "cold-beer": "Cold Beer",
+      "vegan-options": "Vegan Options",
+      "live-music": "Live Music",
+      "weekday-nightlife": "Weekday Nightlife",
+      "espresso-martini": "Espresso Martini"
+    },
+    "subcategories": {
+      "cafes": "Cafes",
+      "restaurants": "Restaurants",
+      "bars": "Bars",
+      "daily-meals-pf": "Daily Meals (PF)",
+      "pousadas": "Pousadas",
+      "hostels": "Hostels",
+      "houses": "Houses",
+      "apartments": "Apartments"
+    }
   }
 }

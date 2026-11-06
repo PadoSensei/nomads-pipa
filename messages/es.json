@@ -112,5 +112,58 @@
     "all": "Todos",
     "submit": "Enviar",
     "reset": "Restablecer"
+  },
+  "Directory": {
+    "partnerBadge": "Socio",
+    "verifiedBadge": "Verificado",
+    "unverifiedBadge": "No verificado",
+    "wifiSpeed": "{speed} Mbps",
+    "powerOutlets": "Tomas de Corriente",
+    "quietSpace": "Espacio Tranquilo",
+    "petFriendly": "Admite Mascotas",
+    "allSubcategories": "Todas las Subcategorías",
+    "filterByTag": "Filtrar por Intención",
+    "clearFilters": "Borrar filtros",
+    "noFilteredResults": "No se encontraron negocios con los filtros activos.",
+    "openingHoursTitle": "Horario de Apertura",
+    "openingHoursClosed": "Cerrado",
+    "contactWhatsApp": "Contacto por WhatsApp",
+    "viewInstagram": "Instagram",
+    "openGoogleMaps": "Cómo Llegar (Google Maps)",
+    "days": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    },
+    "tags": {
+      "wifi": "Wi-Fi",
+      "power-outlets": "Tomas de Corriente",
+      "daily-meal-pf": "Plato Combinado (PF)",
+      "sunset-views": "Vistas al Atardecer",
+      "remote-work-friendly": "Apto para Teletrabajo",
+      "quiet-space": "Espacio Silencioso",
+      "pet-friendly": "Admite Mascotas",
+      "ocean-view": "Vista al Mar",
+      "date-night": "Cita Nocturna",
+      "cold-beer": "Cerveza Helada",
+      "vegan-options": "Opciones Veganas",
+      "live-music": "Música en Vivo",
+      "weekday-nightlife": "Vida Nocturna entre Semana",
+      "espresso-martini": "Espresso Martini"
+    },
+    "subcategories": {
+      "cafes": "Cafés",
+      "restaurants": "Restaurantes",
+      "bars": "Bares",
+      "daily-meals-pf": "Plato Combinado (PF)",
+      "pousadas": "Pousadas",
+      "hostels": "Hostales",
+      "houses": "Casas",
+      "apartments": "Apartamentos"
+    }
   }
 }

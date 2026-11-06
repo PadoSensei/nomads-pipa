@@ -112,5 +112,58 @@
     "all": "Todos",
     "submit": "Enviar",
     "reset": "Limpar"
+  },
+  "Directory": {
+    "partnerBadge": "Parceiro",
+    "verifiedBadge": "Verificado",
+    "unverifiedBadge": "Não verificado",
+    "wifiSpeed": "{speed} Mbps",
+    "powerOutlets": "Tomadas",
+    "quietSpace": "Ambiente Silencioso",
+    "petFriendly": "Aceita Pets",
+    "allSubcategories": "Todas as Subcategorias",
+    "filterByTag": "Filtrar por Intenção",
+    "clearFilters": "Limpar filtros",
+    "noFilteredResults": "Nenhum estabelecimento encontrado com os filtros ativos.",
+    "openingHoursTitle": "Horário de Funcionamento",
+    "openingHoursClosed": "Fechado",
+    "contactWhatsApp": "Contato via WhatsApp",
+    "viewInstagram": "Instagram",
+    "openGoogleMaps": "Como Chegar (Google Maps)",
+    "days": {
+      "monday": "Segunda-feira",
+      "tuesday": "Terça-feira",
+      "wednesday": "Quarta-feira",
+      "thursday": "Quinta-feira",
+      "friday": "Sexta-feira",
+      "saturday": "Sábado",
+      "sunday": "Domingo"
+    },
+    "tags": {
+      "wifi": "Wi-Fi",
+      "power-outlets": "Tomadas",
+      "daily-meal-pf": "Prato Feito (PF)",
+      "sunset-views": "Pôr do Sol",
+      "remote-work-friendly": "Ideal para Laptop",
+      "quiet-space": "Silencioso",
+      "pet-friendly": "Aceita Pets",
+      "ocean-view": "Vista pro Mar",
+      "date-night": "Para Casais",
+      "cold-beer": "Cerveja Gelada",
+      "vegan-options": "Opções Veganas",
+      "live-music": "Música ao Vivo",
+      "weekday-nightlife": "Noite durante a semana",
+      "espresso-martini": "Espresso Martini"
+    },
+    "subcategories": {
+      "cafes": "Cafés",
+      "restaurants": "Restaurantes",
+      "bars": "Bares",
+      "daily-meals-pf": "Prato Feito (PF)",
+      "pousadas": "Pousadas",
+      "hostels": "Hostels",
+      "houses": "Casas",
+      "apartments": "Apartamentos"
+    }
   }
 }

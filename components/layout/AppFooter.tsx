@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { Compass, Sparkles, Heart } from "lucide-react";
@@ -105,7 +106,13 @@ export async function AppFooter() {
 
         {/* Secondary Language Switcher in Footer */}
         <div className="mt-8 border-t border-border/60 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <LanguageSelector variant="footer" />
+          <Suspense
+            fallback={
+              <div className="h-7 w-20 rounded-full bg-muted/40 animate-pulse" />
+            }
+          >
+            <LanguageSelector variant="footer" />
+          </Suspense>
         </div>
 
         <div className="mt-4 border-t border-border/40 pt-4 flex flex-col items-center justify-between gap-3 text-xs text-muted-foreground sm:flex-row">
