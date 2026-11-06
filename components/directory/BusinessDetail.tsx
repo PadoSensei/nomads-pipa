@@ -16,15 +16,35 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { isKnownSubcategory, isKnownTag } from "@/lib/content/i18n-keys";
+import { getLocalizedCategory, getLocalizedListing } from "@/lib/content/localization";
+import { getCategoryBySlug } from "@/lib/content/categories";
+import type { ContentLocale } from "@/lib/content/status";
 
 export interface BusinessDetailProps {
   business: BusinessListing;
 }
 
-export function BusinessDetail({ business }: BusinessDetailProps) {
+export function BusinessDetail({ business: rawBusiness }: BusinessDetailProps) {
   const t = useTranslations("Directory");
+  const locale = useLocale() as ContentLocale;
+  const business = getLocalizedListing(rawBusiness, locale);
+
+  // Look up localized category name for back button label
+  const rawCategory = getCategoryBySlug(business.category);
+  const localizedCategory = rawCategory
+    ? getLocalizedCategory(rawCategory, locale)
+    : undefined;
+
+  const backLabel = localizedCategory
+    ? t("backToCategory", { category: localizedCategory.name })
+    : t("backToDirectory");
+
+  const backHref = localizedCategory
+    ? `/category/${business.category}`
+    : `/categories`;
+
   const isPartner = business.partnerStatus === "approved";
   const isQuietSpace = business.tags.includes("quiet-space");
 
@@ -53,11 +73,11 @@ export function BusinessDetail({ business }: BusinessDetailProps) {
       {/* Back button */}
       <div className="mb-6">
         <Link
-          href={`/category/${business.category}`}
+          href={backHref}
           className="inline-flex min-h-[44px] min-w-[44px] items-center gap-2 rounded-xl text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <ArrowLeft className="h-4 w-4" />
-          <span>{t("allSubcategories")}</span>
+          <span>{backLabel}</span>
         </Link>
       </div>
 

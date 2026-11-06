@@ -11,15 +11,20 @@ import {
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { isKnownSubcategory } from "@/lib/content/i18n-keys";
+import { getLocalizedListing } from "@/lib/content/localization";
+import type { ContentLocale } from "@/lib/content/status";
 
 export interface BusinessCardProps {
   business: BusinessListing;
 }
 
-export function BusinessCard({ business }: BusinessCardProps) {
+export function BusinessCard({ business: rawBusiness }: BusinessCardProps) {
   const t = useTranslations("Directory");
+  const locale = useLocale() as ContentLocale;
+  const business = getLocalizedListing(rawBusiness, locale);
+
   const isQuietSpace = business.tags.includes("quiet-space");
   const isPartner = business.partnerStatus === "approved";
 
