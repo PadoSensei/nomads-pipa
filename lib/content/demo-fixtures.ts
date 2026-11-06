@@ -67,6 +67,18 @@ export const demoBusinessCafe: BusinessListing = {
   isDemo: true,
   createdAt: "2025-01-01T12:00:00Z",
   updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Coastal Nomad Workspace & Café",
+      description:
+        "Espaço de coworking e café fictício à beira-mar com mesas dedicadas, internet fibra veloz e cafés especiais.",
+    },
+    es: {
+      name: "[DEMO] Coastal Nomad Workspace & Café",
+      description:
+        "Espacio de coworking y cafetería frente al mar ficticio con mesas de trabajo, internet de alta velocidad y café de especialidad.",
+    },
+  },
 };
 
 /**
@@ -113,6 +125,18 @@ export const demoBusinessSunsetLounge: BusinessListing = {
   isDemo: true,
   createdAt: "2025-01-01T12:00:00Z",
   updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Mirante Sunset Lounge & Petiscos",
+      description:
+        "Bar e lounge fictício no alto da falésia com vista para a Praia do Amor, oferecendo petiscos artesanais, coquetéis e pôr do sol panorâmico.",
+    },
+    es: {
+      name: "[DEMO] Mirante Sunset Lounge & Tapas",
+      description:
+        "Bar y terraza ficticio en el acantilado con vista a Praia do Amor, con tapas artesanales, cócteles y vista panorámica del atardecer.",
+    },
+  },
 };
 
 /**
@@ -152,6 +176,18 @@ export const demoBusinessPousada: BusinessListing = {
   isDemo: true,
   createdAt: "2025-01-01T12:00:00Z",
   updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Pousada Jardim Secreto & Suítes Nômade",
+      description:
+        "Pousada boutique serena rodeada por jardins de Mata Atlântica com mesas de trabalho em todas as suítes.",
+    },
+    es: {
+      name: "[DEMO] Posada Jardín Secreto & Suites Nómada",
+      description:
+        "Posada boutique serena rodeada de selva tropical con escritorios de trabajo en cada suite.",
+    },
+  },
 };
 
 /**

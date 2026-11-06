@@ -4,18 +4,27 @@ import { generateMetadata as generateBusinessMetadata } from "@/app/[locale]/bus
 import { demoBusinessCafe } from "@/lib/content/demo-fixtures";
 
 describe("Route Metadata Generation", () => {
-  it("category route generates dynamic metadata for valid category", async () => {
+  it("category route generates dynamic metadata for valid category in English", async () => {
     const meta = await generateCategoryMetadata({
-      params: Promise.resolve({ slug: "food-and-drink" }),
+      params: Promise.resolve({ locale: "en", slug: "food-and-drink" }),
     });
 
     expect(meta.title).toBe("Food & Drink — Nomads Pipa");
     expect(meta.description).toContain("dining and cafes");
   });
 
+  it("category route generates localized dynamic metadata in Portuguese", async () => {
+    const meta = await generateCategoryMetadata({
+      params: Promise.resolve({ locale: "pt-BR", slug: "food-and-drink" }),
+    });
+
+    expect(meta.title).toBe("Comida & Bebida — Nomads Pipa");
+    expect(meta.description).toContain("Gastronomia e cafés");
+  });
+
   it("category route generates fallback metadata for unknown category", async () => {
     const meta = await generateCategoryMetadata({
-      params: Promise.resolve({ slug: "unknown-category" }),
+      params: Promise.resolve({ locale: "en", slug: "unknown-category" }),
     });
 
     expect(meta.title).toBe("Category");

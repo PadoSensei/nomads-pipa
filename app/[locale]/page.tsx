@@ -14,90 +14,70 @@ import {
   Users,
   Wifi,
   Sun,
+  type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useLocale, useTranslations } from "next-intl";
+import {
+  DISCOVERY_CATEGORIES,
+  type CategorySlug,
+} from "@/lib/content/categories";
+import { getLocalizedCategory } from "@/lib/content/localization";
+import type { ContentLocale } from "@/lib/content/status";
 
-const discoveryCategories = [
-  {
-    slug: "food-and-drink",
-    title: "Food & Drink",
-    icon: UtensilsCrossed,
-    tagline: "Cafes, daily meals & sunset views",
-    description:
-      "Vetted remote-work cafes with fast Wi-Fi and power outlets, wholesome daily meal specials (prato feito), and oceanfront sunset spots.",
-    highlightBadge: "Wi-Fi & Plugs",
-  },
-  {
-    slug: "events-and-community",
-    title: "Events & Community",
-    icon: CalendarDays,
-    tagline: "Meetups, surf sessions & gatherings",
-    description:
-      "Official community meetups, social dinners, surf sessions, and vetted local cultural events with clear organiser labels.",
-    highlightBadge: "Meet people today",
-  },
-  {
-    slug: "accommodation",
-    title: "Accommodation",
-    icon: Home,
-    tagline: "Hostels, pousadas & monthly stays",
-    description:
-      "Nomad-ready living spaces with dedicated desks and fast connectivity. Direct partner enquiry routing for custom quotes and extended stays.",
-    highlightBadge: "Direct Quotes",
-  },
-  {
-    slug: "transportation",
-    title: "Transportation",
-    icon: Bike,
-    tagline: "Natal transfers, taxis & rentals",
-    description:
-      "Convenient 'Get Me a Ride' routing for airport shuttles from Natal, trusted local taxi and moto-taxi drivers, plus scooter and bike rentals.",
-    highlightBadge: "Get Me a Ride",
-  },
-  {
-    slug: "sports-and-activities",
-    title: "Sports & Activities",
-    icon: Waves,
-    tagline: "Surf, yoga, boat tours & adventures",
-    description:
-      "Praia do Madeiro surf lessons, cliffside yoga sessions, dolphin watching in Baía dos Golfinhos, beach tennis, and ecological trails.",
-    highlightBadge: "Tide-Aware",
-  },
-  {
-    slug: "essential-services",
-    title: "Essential Services",
-    icon: ShieldAlert,
-    tagline: "Emergency, health, tech repair & Pix",
-    description:
-      "Critical local information: 24h health clinics, English-friendly doctors, laptop and smartphone repair, laundry, and foreign Pix payment tips.",
-    highlightBadge: "Verified & Safe",
-  },
-];
-
-const platformPillars = [
-  {
-    icon: Compass,
-    title: "Contextual Local Discovery",
-    description:
-      "Not a generic directory. We curate practical answers for nomads: where to get reliable Wi-Fi, where to find great daily meals, and where to catch the sunset.",
-  },
-  {
-    icon: Users,
-    title: "Vibrant Nomad & Local Community",
-    description:
-      "Connect with fellow remote workers, exchange local tips, join social projects, and support Pipa's environmental initiatives.",
-  },
-  {
-    icon: QrCode,
-    title: "The Traffic Router & Perks",
-    description:
-      "Turn everyday discovery into rewards. Scan partner QR codes during physical visits, unlock community quests, and claim limited-time Flash Drops.",
-  },
-];
+const CATEGORY_ICONS: Record<CategorySlug, LucideIcon> = {
+  "food-and-drink": UtensilsCrossed,
+  "events-and-community": CalendarDays,
+  accommodation: Home,
+  transportation: Bike,
+  "sports-and-activities": Waves,
+  "essential-services": ShieldAlert,
+  "community-give-back": Compass,
+};
 
 export default function HomePage() {
+  const t = useTranslations("Homepage");
+  const locale = useLocale() as ContentLocale;
+
+  // The 6 core discovery areas shown on homepage
+  const homeCategorySlugs: CategorySlug[] = [
+    "food-and-drink",
+    "events-and-community",
+    "accommodation",
+    "transportation",
+    "sports-and-activities",
+    "essential-services",
+  ];
+
+  const categories = homeCategorySlugs.map((slug) => {
+    const raw = DISCOVERY_CATEGORIES.find((c) => c.slug === slug)!;
+    const localized = getLocalizedCategory(raw, locale);
+    return {
+      ...localized,
+      icon: CATEGORY_ICONS[slug],
+    };
+  });
+
+  const platformPillars = [
+    {
+      icon: Compass,
+      title: t("pillar1Title"),
+      description: t("pillar1Desc"),
+    },
+    {
+      icon: Users,
+      title: t("pillar2Title"),
+      description: t("pillar2Desc"),
+    },
+    {
+      icon: QrCode,
+      title: t("pillar3Title"),
+      description: t("pillar3Desc"),
+    },
+  ];
+
   return (
     <div className="flex flex-col">
       {/* 1. HERO SECTION */}
@@ -110,22 +90,20 @@ export default function HomePage() {
             {/* Location Pill */}
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/80 px-3.5 py-1 text-xs font-semibold text-accent-foreground shadow-xs backdrop-blur-xs">
               <Sun className="h-3.5 w-3.5 text-accent-foreground" />
-              <span>Praia da Pipa · Rio Grande do Norte · Brazil</span>
+              <span>{t("locationPill")}</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              Your Local Companion in{" "}
+              {t("heroHeadlineStart")}{" "}
               <span className="bg-gradient-to-r from-primary via-accent-foreground to-primary bg-clip-text text-transparent">
-                Praia da Pipa
+                {t("heroLocation")}
               </span>
             </h1>
 
             {/* Value Proposition */}
             <p className="mt-5 max-w-2xl text-base text-muted-foreground leading-relaxed sm:text-lg">
-              The digital hub connecting digital nomads, remote workers, and
-              travellers with curated local recommendations, community events,
-              verified workspaces, and local business perks.
+              {t("heroSubtitle")}
             </p>
 
             {/* Quick Action / Discovery Entry Point */}
@@ -137,7 +115,7 @@ export default function HomePage() {
                   "h-12 w-full flex-1 rounded-full bg-primary font-semibold text-primary-foreground shadow-md hover:bg-primary/90"
                 )}
               >
-                <span>Browse All Categories</span>
+                <span>{t("browseCategories")}</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
@@ -148,7 +126,7 @@ export default function HomePage() {
                 )}
               >
                 <CalendarDays className="mr-2 h-4 w-4 text-primary" />
-                <span>Events & Meetups</span>
+                <span>{t("eventsCta")}</span>
               </Link>
             </div>
 
@@ -156,22 +134,22 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <Wifi className="h-3.5 w-3.5 text-primary" />
-                Verified Wi-Fi Cafes
+                {t("verifiedWifiHighlight")}
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5 text-primary" />
-                Curated Local Spots
+                {t("curatedSpotsHighlight")}
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <Sparkles className="h-3.5 w-3.5 text-primary" />
-                Community Perks & Quests
+                {t("communityPerksHighlight")}
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. THE SIX CORE DISCOVERY CATEGORIES (Prominent immediately after Hero) */}
+      {/* 2. THE SIX CORE DISCOVERY CATEGORIES */}
       <section
         id="categories"
         className="container mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:py-20"
@@ -180,14 +158,13 @@ export default function HomePage() {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent-foreground">
               <MapPin className="h-3.5 w-3.5" />
-              <span>Explore Pipa</span>
+              <span>{t("explorePipaBadge")}</span>
             </div>
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-              Main Discovery Areas
+              {t("mainDiscoveryAreas")}
             </h2>
             <p className="max-w-xl text-sm text-muted-foreground sm:text-base">
-              Every major dimension of local life and nomad workflow in Pipa,
-              structured for fast, reliable access.
+              {t("mainDiscoveryAreasSubtitle")}
             </p>
           </div>
 
@@ -195,14 +172,14 @@ export default function HomePage() {
             href="/categories"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
           >
-            <span>View directory index</span>
+            <span>{t("viewDirectoryIndex")}</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
         {/* 6 Category Cards Grid */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {discoveryCategories.map((category) => {
+          {categories.map((category) => {
             const Icon = category.icon;
             return (
               <Link
@@ -224,7 +201,7 @@ export default function HomePage() {
                   </div>
 
                   <h3 className="mt-4 text-xl font-bold tracking-tight text-foreground group-hover:text-primary">
-                    {category.title}
+                    {category.name}
                   </h3>
                   <p className="mt-1 text-xs font-medium text-accent-foreground">
                     {category.tagline}
@@ -235,7 +212,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-6 flex items-center gap-1 text-xs font-semibold text-primary pt-2 border-t border-border/40">
-                  <span>Explore category</span>
+                  <span>{t("exploreCategory")}</span>
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
@@ -249,14 +226,13 @@ export default function HomePage() {
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
             <span className="text-xs font-bold uppercase tracking-wider text-accent-foreground">
-              Why Nomads Pipa
+              {t("whyNomadsPipaBadge")}
             </span>
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-              Built Specifically for Pipa Nomads & Locals
+              {t("whyNomadsPipaTitle")}
             </h2>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              A community-driven companion designed to make everyday life and
-              remote work in Pipa seamless, social, and connected.
+              {t("whyNomadsPipaSubtitle")}
             </p>
           </div>
 
@@ -293,15 +269,13 @@ export default function HomePage() {
               className="border border-border/80 px-3 py-1 text-xs font-semibold text-accent-foreground"
             >
               <Sparkles className="mr-1.5 h-3.5 w-3.5 inline" />
-              Local Business Ecosystem
+              {t("partnerBadge")}
             </Badge>
             <h2 className="mt-4 text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl">
-              Are you a local business in Praia da Pipa?
+              {t("partnerTitle")}
             </h2>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed sm:text-base">
-              Reach remote workers and international travellers during their stay.
-              Drive physical footfall with verified QR codes, fill quiet hours
-              with Flash Drops, and become part of curated local quests.
+              {t("partnerSubtitle")}
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -312,7 +286,7 @@ export default function HomePage() {
                   "h-12 w-full rounded-full bg-primary px-8 font-semibold text-primary-foreground shadow-md hover:bg-primary/90 sm:w-auto"
                 )}
               >
-                <span>Partner With Nomads Pipa</span>
+                <span>{t("partnerCta")}</span>
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
               <Link
@@ -322,7 +296,7 @@ export default function HomePage() {
                   "h-12 w-full rounded-full border-border/80 font-medium sm:w-auto"
                 )}
               >
-                <span>About the Platform</span>
+                <span>{t("aboutPlatformCta")}</span>
               </Link>
             </div>
           </div>

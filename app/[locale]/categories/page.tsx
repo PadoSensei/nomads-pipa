@@ -9,67 +9,71 @@ import {
   ShieldAlert,
   ArrowRight,
   Layers,
+  type LucideIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { getTranslations } from "next-intl/server";
+import {
+  DISCOVERY_CATEGORIES,
+  type CategorySlug,
+} from "@/lib/content/categories";
+import { getLocalizedCategory } from "@/lib/content/localization";
+import type { ContentLocale } from "@/lib/content/status";
 
-export const metadata: Metadata = {
-  title: "Categories",
-  description:
-    "Explore all primary discovery categories in Praia da Pipa — from food and workspaces to activities and essential services.",
+const CATEGORY_ICONS: Record<CategorySlug, LucideIcon> = {
+  "food-and-drink": UtensilsCrossed,
+  "events-and-community": CalendarDays,
+  accommodation: Home,
+  transportation: Bike,
+  "sports-and-activities": Waves,
+  "essential-services": ShieldAlert,
+  "community-give-back": Layers,
 };
 
-const categories = [
-  {
-    slug: "food-and-drink",
-    title: "Food & Drink",
-    icon: UtensilsCrossed,
-    description:
-      "Remote-work cafes, daily meals (PF), sunset spots, vegan choices, and local nightlife.",
-    highlight: "Cafes with Wi-Fi & plugs",
-  },
-  {
-    slug: "events-and-community",
-    title: "Events & Community",
-    icon: CalendarDays,
-    description:
-      "Nomad meetups, surf sessions, workshops, social gatherings, and local live music.",
-    highlight: "Weekly meetups & gatherings",
-  },
-  {
-    slug: "accommodation",
-    title: "Accommodation",
-    icon: Home,
-    description:
-      "Nomad-friendly pousadas, apartments, monthly rentals, and coliving options in Pipa.",
-    highlight: "Partner quotes & long stays",
-  },
-  {
-    slug: "transportation",
-    title: "Transportation",
-    icon: Bike,
-    description:
-      "Airport transfers from Natal, local taxis, moto-taxis, rentals, and regional bus schedules.",
-    highlight: "Get Me a Ride routing",
-  },
-  {
-    slug: "sports-and-activities",
-    title: "Sports & Activities",
-    icon: Waves,
-    description:
-      "Surf lessons, surfboard rentals, beach tennis, yoga, boat tours, and coastal treks.",
-    highlight: "Local tide-aware adventures",
-  },
-  {
-    slug: "essential-services",
-    title: "Essential Services",
-    icon: ShieldAlert,
-    description:
-      "Emergency numbers, healthcare clinics, pharmacies, laptop repair, laundry, and foreigner Pix guidance.",
-    highlight: "Critical local info & safety",
-  },
-];
+import type { AppLocale } from "@/i18n/routing";
 
-export default function CategoriesPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Categories" });
+
+  return {
+    title: `${t("title")} — Nomads Pipa`,
+    description: t("subtitle"),
+  };
+}
+
+export default async function CategoriesPage({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Categories" });
+  const contentLocale = locale as ContentLocale;
+
+  // The 6 core discovery areas
+  const categorySlugs: CategorySlug[] = [
+    "food-and-drink",
+    "events-and-community",
+    "accommodation",
+    "transportation",
+    "sports-and-activities",
+    "essential-services",
+  ];
+
+  const categories = categorySlugs.map((slug) => {
+    const raw = DISCOVERY_CATEGORIES.find((c) => c.slug === slug)!;
+    const localized = getLocalizedCategory(raw, contentLocale);
+    return {
+      ...localized,
+      icon: CATEGORY_ICONS[slug],
+    };
+  });
+
   return (
     <div className="container mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
       <div className="mb-8 flex flex-col gap-2">
@@ -79,18 +83,17 @@ export default function CategoriesPage() {
             className="border border-border/80 px-2.5 py-0.5 text-xs font-semibold text-accent-foreground"
           >
             <Layers className="mr-1 h-3 w-3 inline" />
-            Directory Index
+            {t("directoryIndexBadge")}
           </Badge>
           <span className="text-xs font-medium text-muted-foreground">
-            All 6 Core Categories
+            {t("allCoreCategoriesCount")}
           </span>
         </div>
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          Discovery Categories
+          {t("categoriesPageTitle")}
         </h1>
         <p className="max-w-2xl text-base text-muted-foreground">
-          Find exactly what you need in Praia da Pipa. Navigate every major
-          dimension of nomad and local life through curated, verified areas.
+          {t("categoriesPageDescription")}
         </p>
       </div>
 
@@ -109,11 +112,11 @@ export default function CategoriesPage() {
                     <Icon className="h-6 w-6" />
                   </div>
                   <Badge variant="outline" className="text-[11px] font-normal">
-                    {cat.highlight}
+                    {cat.highlightBadge}
                   </Badge>
                 </div>
                 <h2 className="mt-4 text-xl font-bold tracking-tight text-foreground group-hover:text-primary">
-                  {cat.title}
+                  {cat.name}
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                   {cat.description}
@@ -121,7 +124,7 @@ export default function CategoriesPage() {
               </div>
 
               <div className="mt-6 flex items-center gap-1.5 text-xs font-semibold text-primary">
-                <span>View listings & info</span>
+                <span>{t("viewListingsAndInfo")}</span>
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>

@@ -1,40 +1,54 @@
 import type { Metadata } from "next";
 import { Sparkles } from "lucide-react";
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "Become a Partner",
-  description:
-    "Partner with Nomads Pipa to reach digital nomads and remote workers visiting Praia da Pipa.",
-};
+import type { AppLocale } from "@/i18n/routing";
 
-export default function PartnerPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Partner" });
+
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+  };
+}
+
+export default async function PartnerPage({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Partner" });
+
   return (
     <PlaceholderPage
-      title="Become a Local Partner"
-      description="Connect your business directly with remote workers, digital nomads, and visitors staying in Praia da Pipa. Turn discovery into verified footfall, fill off-peak hours with Flash Drops, and participate in community quests."
+      title={t("heroTitle")}
+      description={t("heroDescription")}
       icon={Sparkles}
-      badge="Partner Portal · Milestone M2"
+      badge={t("portalBadge")}
       details={[
         {
-          label: "Measurable Physical Footfall",
-          description:
-            "Drive real-world customer visits verified through smart QR code scans and quests.",
+          label: t("feature1Title"),
+          description: t("feature1Desc"),
         },
         {
-          label: "Dynamic Flash Drops",
-          description:
-            "Launch limited-time offers during quiet hours to instantly attract nearby nomads.",
+          label: t("feature2Title"),
+          description: t("feature2Desc"),
         },
         {
-          label: "Verified Business Presence",
-          description:
-            "Showcase amenities nomads look for: verified Wi-Fi speeds, power outlets, quiet zones, and WhatsApp links.",
+          label: t("feature3Title"),
+          description: t("feature3Desc"),
         },
         {
-          label: "Dedicated Staff Redemption",
-          description:
-            "A fast, 1-tap mobile scanner for your waitstaff with zero hardware investment.",
+          label: t("feature4Title"),
+          description: t("feature4Desc"),
         },
       ]}
     />

@@ -10,102 +10,91 @@ import {
   HeartHandshake,
   type LucideIcon,
   FilterX,
+  X,
 } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { contentService, parseDirectoryFilterParams } from "@/lib/content";
+import {
+  contentService,
+  parseDirectoryFilterParams,
+  getCategoryBySlug,
+  getLocalizedCategory,
+  type ContextualTagSlug,
+} from "@/lib/content";
 import {
   BusinessCard,
   CategoryHeader,
   ContextualFilterBar,
 } from "@/components/directory";
+import type { AppLocale } from "@/i18n/routing";
+import type { ContentLocale } from "@/lib/content/status";
+import { isKnownSubcategory, isKnownTag } from "@/lib/content/i18n-keys";
 
-interface CategoryMeta {
-  title: string;
-  description: string;
+interface CategoryMetaConfig {
   icon: LucideIcon;
   subcategories: string[];
 }
 
-const CATEGORY_MAP: Record<string, CategoryMeta> = {
+const CATEGORY_CONFIG: Record<string, CategoryMetaConfig> = {
   "food-and-drink": {
-    title: "Food & Drink",
-    description:
-      "Curated local dining and cafes in Praia da Pipa. Filter by remote-work friendly cafes with verified Wi-Fi, daily meal specials (prato feito), sunset views, and live music.",
     icon: UtensilsCrossed,
     subcategories: ["cafes", "restaurants", "bars", "daily-meals-pf"],
   },
   "events-and-community": {
-    title: "Events & Community",
     icon: CalendarDays,
-    description:
-      "Stay connected with what is happening in Pipa. Discover official Nomads Pipa meetups, community-vetted gatherings, workshops, and local cultural festivals.",
     subcategories: [],
   },
   accommodation: {
-    title: "Accommodation",
     icon: Home,
-    description:
-      "Find vetted places to stay in Pipa for days, weeks, or months. Direct partner enquiry workflow connecting you with trusted hostels, pousadas, and private rentals.",
     subcategories: ["pousadas", "hostels", "houses", "apartments"],
   },
   transportation: {
-    title: "Transportation",
     icon: Bike,
-    description:
-      "Navigate Pipa and Rio Grande do Norte with ease. Simple 'Get Me a Ride' routing for airport shuttles from Natal, local taxis, moto-taxis, and rental vehicles.",
     subcategories: [],
   },
   "sports-and-activities": {
-    title: "Sports & Activities",
     icon: Waves,
-    description:
-      "Make the most of Pipa's unique nature and coastline. Find surf schools, board rentals, yoga studios, dolphin tours, boat trips, and beach fitness sessions.",
     subcategories: [],
   },
   "essential-services": {
-    title: "Essential Services",
     icon: ShieldAlert,
-    description:
-      "Reliable and verified local essentials. Fast access to emergency numbers, local medical clinics, pharmacies, laptop repair, laundry, and foreign traveler Pix guidance.",
     subcategories: [],
   },
   "community-give-back": {
-    title: "Community & Give Back",
     icon: HeartHandshake,
-    description:
-      "Connect with local community projects, social initiatives, and beach cleanups across Praia da Pipa and Tibau do Sul.",
     subcategories: [],
   },
 };
 
 export async function generateStaticParams() {
-  return Object.keys(CATEGORY_MAP).map((slug) => ({ slug }));
+  return Object.keys(CATEGORY_CONFIG).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: AppLocale; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const category = CATEGORY_MAP[slug];
+  const { locale, slug } = await params;
+  const rawCategory = getCategoryBySlug(slug);
 
-  if (!category) {
+  if (!rawCategory) {
     return {
       title: "Category",
     };
   }
 
+  const category = getLocalizedCategory(rawCategory, locale as ContentLocale);
+
   return {
-    title: `${category.title} — Nomads Pipa`,
+    title: `${category.name} — Nomads Pipa`,
     description: category.description,
   };
 }
 
 interface CategoryPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: AppLocale; slug: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
@@ -113,27 +102,57 @@ async function CategoryListingsContent({
   params,
   searchParams,
 }: CategoryPageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const rawSearchParams = await searchParams;
-  const category = CATEGORY_MAP[slug];
+  const rawCategory = getCategoryBySlug(slug);
+  const config = CATEGORY_CONFIG[slug];
 
-  if (!category) {
+  if (!rawCategory || !config) {
     notFound();
   }
 
+  const category = getLocalizedCategory(rawCategory, locale as ContentLocale);
   const filters = parseDirectoryFilterParams(rawSearchParams);
   const businesses = await contentService.getBusinessesByCategory(slug, filters);
-  const t = await getTranslations("Directory");
+  const t = await getTranslations({ locale, namespace: "Directory" });
+
+  const hasActiveSubcategory = Boolean(filters.subcategory);
+  const hasActiveTags = Boolean(filters.tags && filters.tags.length > 0);
+  const hasAnyFilter = hasActiveSubcategory || hasActiveTags;
+
+  // Helper to remove a single tag from active filters
+  const getRemoveTagHref = (tagToRemove: ContextualTagSlug) => {
+    const remainingTags = (filters.tags || []).filter((t) => t !== tagToRemove);
+    const params = new URLSearchParams();
+    if (filters.subcategory) {
+      params.set("subcategory", filters.subcategory);
+    }
+    if (remainingTags.length > 0) {
+      params.set("tags", remainingTags.join(","));
+    }
+    const qs = params.toString();
+    return `/category/${slug}${qs ? `?${qs}` : ""}`;
+  };
+
+  // Helper to remove subcategory from active filters
+  const getRemoveSubcategoryHref = () => {
+    const params = new URLSearchParams();
+    if (filters.tags && filters.tags.length > 0) {
+      params.set("tags", filters.tags.join(","));
+    }
+    const qs = params.toString();
+    return `/category/${slug}${qs ? `?${qs}` : ""}`;
+  };
 
   return (
     <div className="container mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
       {/* Category Header */}
       <CategoryHeader
         categorySlug={slug}
-        title={category.title}
+        title={category.name}
         description={category.description}
-        icon={category.icon}
-        subcategories={category.subcategories}
+        icon={config.icon}
+        subcategories={config.subcategories}
         activeSubcategory={filters.subcategory}
         activeTags={filters.tags}
       />
@@ -144,6 +163,55 @@ async function CategoryListingsContent({
         activeTags={filters.tags}
         activeSubcategory={filters.subcategory}
       />
+
+      {/* Result Count and Active Filters Summary Strip */}
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-semibold text-foreground">
+            {t("resultCount", { count: businesses.length })}
+          </span>
+
+          {hasAnyFilter && (
+            <div className="flex flex-wrap items-center gap-1.5 ml-1" aria-label={t("activeFiltersLabel")}>
+              {filters.subcategory && (
+                <Link
+                  href={getRemoveSubcategoryHref()}
+                  className="inline-flex min-h-[36px] items-center gap-1 rounded-lg border border-border/80 bg-muted/60 px-2.5 py-1 text-xs font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label={`Remove subcategory filter: ${filters.subcategory}`}
+                >
+                  <span>
+                    {isKnownSubcategory(filters.subcategory)
+                      ? t(`subcategories.${filters.subcategory}`)
+                      : filters.subcategory}
+                  </span>
+                  <X className="h-3 w-3 text-muted-foreground" />
+                </Link>
+              )}
+
+              {filters.tags?.map((tag) => (
+                <Link
+                  key={tag}
+                  href={getRemoveTagHref(tag)}
+                  className="inline-flex min-h-[36px] items-center gap-1 rounded-lg border border-border/80 bg-muted/60 px-2.5 py-1 text-xs font-medium text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label={`Remove tag filter: ${tag}`}
+                >
+                  <span>{isKnownTag(tag) ? t(`tags.${tag}`) : tag}</span>
+                  <X className="h-3 w-3 text-muted-foreground" />
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {hasAnyFilter && (
+          <Link
+            href={`/category/${slug}`}
+            className="inline-flex min-h-[36px] items-center text-xs font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm w-fit"
+          >
+            {t("clearAllFilters")}
+          </Link>
+        )}
+      </div>
 
       {/* Listings Grid or Empty State */}
       {businesses.length > 0 ? (
@@ -160,11 +228,14 @@ async function CategoryListingsContent({
           <h3 className="text-lg font-semibold text-foreground">
             {t("noFilteredResults")}
           </h3>
-          {(filters.tags?.length || filters.subcategory) && (
-            <div className="mt-4">
+          <p className="mt-2 max-w-sm text-xs text-muted-foreground">
+            {t("noFilteredResultsDescription")}
+          </p>
+          {hasAnyFilter && (
+            <div className="mt-6">
               <Link
                 href={`/category/${slug}`}
-                className="inline-flex min-h-[44px] items-center rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-xs transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex min-h-[44px] items-center rounded-xl bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground shadow-xs transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {t("clearFilters")}
               </Link>
