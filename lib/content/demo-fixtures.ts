@@ -48,6 +48,7 @@ export const demoBusinessCafe: BusinessListing = {
     "power-outlets",
     "ocean-view",
     "cold-beer",
+    "quiet-space",
   ],
   priceLevel: "$$",
   openingHours: {
@@ -60,6 +61,92 @@ export const demoBusinessCafe: BusinessListing = {
     sunday: { open: "10:00", close: "16:00" },
   },
   hasWifi: true,
+  wifiSpeed: 250,
+  hasPowerOutlets: true,
+  isPetFriendly: true,
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+};
+
+/**
+ * Demo Business 3: Clifftop Sunset Lounge & Bar
+ * Demonstrates: sunset-views, partner venue, pet friendly, evening hours.
+ */
+export const demoBusinessSunsetLounge: BusinessListing = {
+  id: "demo-bus-003",
+  name: "[DEMO] Mirante Sunset Lounge & Tapas",
+  slug: "demo-mirante-sunset-lounge-tapas",
+  description:
+    "Fictional cliffside bar and terrace overlooking Praia do Amor, featuring artisanal tapas, cocktails, and panoramic sunset views.",
+  category: "food-and-drink",
+  subcategory: "bars",
+  address: "Demo Rua do Mirante, 20, Praia da Pipa (Fictional)",
+  location: {
+    latitude: -6.2345,
+    longitude: -35.0489,
+  },
+  contact: {
+    whatsapp: "+55 84 99999-0003",
+    instagram: "@demo_mirante_sunset",
+  },
+  coverImageUrl: "/images/demo-sunset-cover.webp",
+  publicationStatus: "published",
+  visibility: "public",
+  partnerStatus: "approved",
+  verificationStatus: "verified",
+  tags: ["wifi", "sunset-views", "ocean-view", "date-night", "cold-beer"],
+  priceLevel: "$$$",
+  openingHours: {
+    monday: { open: "16:00", close: "23:00" },
+    tuesday: { open: "16:00", close: "23:00" },
+    wednesday: { open: "16:00", close: "23:00" },
+    thursday: { open: "16:00", close: "23:00" },
+    friday: { open: "15:30", close: "00:00" },
+    saturday: { open: "15:30", close: "00:00" },
+    sunday: { open: "15:30", close: "23:00" },
+  },
+  hasWifi: true,
+  wifiSpeed: 80,
+  hasPowerOutlets: false,
+  isPetFriendly: true,
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+};
+
+/**
+ * Demo Business 4: Boutique Pousada & Garden Workspace (Accommodation)
+ * Demonstrates: accommodation category, quiet-space, wifi, power-outlets.
+ */
+export const demoBusinessPousada: BusinessListing = {
+  id: "demo-bus-004",
+  name: "[DEMO] Pousada Jardim Secreto & Nomad Suites",
+  slug: "demo-pousada-jardim-secreto-nomad-suites",
+  description:
+    "Fictional serene boutique pousada surrounded by Atlantic rainforest gardens with dedicated work desks in every suite.",
+  category: "accommodation",
+  subcategory: "pousadas",
+  address: "Demo Rua das Borboletas, 8, Praia da Pipa (Fictional)",
+  location: {
+    latitude: -6.228,
+    longitude: -35.056,
+  },
+  contact: {
+    whatsapp: "+55 84 99999-0004",
+    email: "reservas@demo-jardimsecreto.example.com",
+    website: "https://demo-jardimsecreto.example.com",
+    instagram: "@demo_jardimsecreto_pipa",
+  },
+  coverImageUrl: "/images/demo-pousada-cover.webp",
+  publicationStatus: "published",
+  visibility: "public",
+  partnerStatus: "approved",
+  verificationStatus: "verified",
+  tags: ["remote-work-friendly", "wifi", "power-outlets", "quiet-space", "pet-friendly"],
+  priceLevel: "$$$",
+  hasWifi: true,
+  wifiSpeed: 300,
   hasPowerOutlets: true,
   isPetFriendly: true,
   isDemo: true,
@@ -206,7 +293,12 @@ export const demoEssentialService: EssentialServiceListing = {
  * Collective demo fixtures object for development, mocking, and testing.
  */
 export const demoFixtures = {
-  businesses: [demoBusinessCafe, demoBusinessRestaurant],
+  businesses: [
+    demoBusinessCafe,
+    demoBusinessRestaurant,
+    demoBusinessSunsetLounge,
+    demoBusinessPousada,
+  ],
   events: [
     demoOfficialMeetupEvent,
     demoCommunityPickEvent,

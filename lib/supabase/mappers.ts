@@ -52,6 +52,7 @@ export interface DatabaseBusinessRow {
   verification_status: string;
   visibility: string;
   has_wifi?: boolean | null;
+  wifi_speed?: number | string | null;
   has_power_outlets?: boolean | null;
   is_pet_friendly?: boolean | null;
   is_demo?: boolean | null;
@@ -231,6 +232,9 @@ export function toBusinessListing(
     ...(priceLevel ? { priceLevel } : {}),
     ...(openingHours ? { openingHours } : {}),
     hasWifi: row.has_wifi ?? false,
+    ...(row.wifi_speed !== null && row.wifi_speed !== undefined
+      ? { wifiSpeed: typeof row.wifi_speed === "string" ? parseFloat(row.wifi_speed) : row.wifi_speed }
+      : {}),
     hasPowerOutlets: row.has_power_outlets ?? false,
     isPetFriendly: row.is_pet_friendly ?? false,
     isDemo: row.is_demo ?? false,

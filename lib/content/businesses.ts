@@ -127,6 +127,7 @@ export interface BusinessListing extends BaseListing {
 
   // Verified amenities
   hasWifi?: boolean;
+  wifiSpeed?: number; // Verified Wi-Fi speed in Mbps
   hasPowerOutlets?: boolean;
   isPetFriendly?: boolean;
 }
