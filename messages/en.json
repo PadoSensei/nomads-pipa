@@ -79,6 +79,46 @@
     "categoriesPageDescription": "Find exactly what you need in Praia da Pipa. Navigate every major dimension of nomad and local life through curated, verified areas.",
     "viewListingsAndInfo": "View listings & info"
   },
+  "EssentialServices": {
+    "title": "Essential Services & Emergency Contacts",
+    "subtitle": "Critical healthcare, 24/7 first aid, safety, tech repairs, laundry, and foreign Pix guidance for Praia da Pipa.",
+    "badge": "Daily Utility & Safety",
+    "verifiedPipaContacts": "Pipa & Tibau do Sul Area",
+    "emergencyBadge": "Emergency / 24h",
+    "available24h": "24/7 Available",
+    "verified": "Verified",
+    "officialSource": "Official Portal / Source",
+    "callNow": "Call Now",
+    "callEmergency": "Call Emergency",
+    "chatWhatsApp": "WhatsApp Contact",
+    "noServicesFound": "No essential services found.",
+    "demoNoticeTitle": "Demonstration Fixtures Notice",
+    "demoNoticeDescription": "These contacts are fictional demo placeholders for interface testing. Do not use these numbers for real-world emergencies in Brazil. For real emergencies in Brazil, dial 192 (SAMU) or 190 (Police).",
+    "sections": {
+      "emergencyTitle": "Emergency Contacts & 24/7 Services",
+      "emergencySubtitle": "Immediate medical triage, first-aid posts, police, and urgent dispatch.",
+      "healthcareTitle": "Healthcare & Medical Services",
+      "healthcareSubtitle": "English-friendly doctors, outpatient consultations, and travel healthcare.",
+      "repairsTitle": "Repairs & Tech Support",
+      "repairsSubtitle": "MacBook, laptop, and smartphone repairs, chargers, and diagnostics.",
+      "paymentsTitle": "Payments & Foreign Pix",
+      "paymentsSubtitle": "Instant Brazilian payment setup, currency exchange, and financial guidance.",
+      "utilityTitle": "Laundry & Daily Utility",
+      "utilitySubtitle": "Express wash-and-fold laundry, parcel support, and daily conveniences."
+    },
+    "subcategories": {
+      "emergency": "Emergency",
+      "healthcare": "Healthcare",
+      "dental": "Dental Care",
+      "veterinary": "Veterinary",
+      "repairs": "Tech & Repairs",
+      "couriers": "Couriers & Postal",
+      "laundry": "Laundry",
+      "beauty-wellness": "Beauty & Wellness",
+      "immigration": "Immigration & Legal",
+      "payments": "Payments & Pix"
+    }
+  },
   "Events": {
     "title": "Events & Meetups",
     "subtitle": "Connect with nomads, join local workshops, surf sessions, and social gatherings.",
@@ -90,7 +130,9 @@
     "rsvp": "RSVP / Join Event",
     "startsAt": "Starts at",
     "location": "Location",
-    "price": "Admission / Cover"
+    "price": "Admission / Cover",
+    "timezoneNotice": "All times in America/Fortaleza (Pipa local time)",
+    "organizedBy": "Hosted by"
   },
   "Community": {
     "title": "Nomads Pipa Community",

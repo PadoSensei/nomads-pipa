@@ -79,6 +79,46 @@
     "categoriesPageDescription": "Encuentra exactamente lo que necesitas en Praia da Pipa. Navega por todas las áreas esenciales con recomendaciones seleccionadas y verificadas.",
     "viewListingsAndInfo": "Ver locales e información"
   },
+  "EssentialServices": {
+    "title": "Servicios Esenciales & Contactos de Emergencia",
+    "subtitle": "Salud de urgencia, atención médica 24h, seguridad, reparación técnica, lavandería y asesoría Pix en Pipa.",
+    "badge": "Utilidad Diaria & Seguridad",
+    "verifiedPipaContacts": "Área de Pipa y Tibau do Sul",
+    "emergencyBadge": "Urgencias / 24h",
+    "available24h": "Atención 24h",
+    "verified": "Verificado",
+    "officialSource": "Portal Oficial / Fuente",
+    "callNow": "Llamar Ahora",
+    "callEmergency": "Llamar a Urgencias",
+    "chatWhatsApp": "Contacto por WhatsApp",
+    "noServicesFound": "No se encontraron servicios esenciales.",
+    "demoNoticeTitle": "Aviso de Datos de Demostración",
+    "demoNoticeDescription": "Estos contactos son ficticios y sirven exclusivamente para pruebas de la interfaz. No use estos números para emergencias reales. En caso de emergencia en Brasil, llame al 192 (SAMU) o 190 (Policía Militar).",
+    "sections": {
+      "emergencyTitle": "Contactos de Emergencia & Servicios 24h",
+      "emergencySubtitle": "Triaje médico inmediato, puestos de primeros auxilios, policía y atención de urgencia.",
+      "healthcareTitle": "Salud & Atención Médica",
+      "healthcareSubtitle": "Médicos con atención en inglés, consultas ambulatorias y salud para viajeros.",
+      "repairsTitle": "Reparaciones & Soporte Técnico",
+      "repairsSubtitle": "Servicio técnico para MacBooks, portátiles, móviles y cargadores.",
+      "paymentsTitle": "Pagos & Pix para Extranjeros",
+      "paymentsSubtitle": "Configuración de pagos instantáneos en Brasil, cambio de divisas y asesoría financiera.",
+      "utilityTitle": "Lavandería & Utilidades Cotidianas",
+      "utilitySubtitle": "Lavanderías exprés con lavado y doblado, paquetería y comodidades del día a día."
+    },
+    "subcategories": {
+      "emergency": "Urgencias",
+      "healthcare": "Salud",
+      "dental": "Odontología",
+      "veterinary": "Veterinaria",
+      "repairs": "Tecnología & Reparaciones",
+      "couriers": "Mensajería & Correos",
+      "laundry": "Lavandería",
+      "beauty-wellness": "Belleza & Bienestar",
+      "immigration": "Inmigración & Legal",
+      "payments": "Pagos & Pix"
+    }
+  },
   "Events": {
     "title": "Eventos & Encuentros",
     "subtitle": "Conecta con otros nómadas, únete a talleres, sesiones de surf y eventos sociales.",
@@ -90,7 +130,9 @@
     "rsvp": "Confirmar Asistencia / Unirse",
     "startsAt": "Comienza a las",
     "location": "Ubicación",
-    "price": "Entrada / Cover"
+    "price": "Entrada / Cover",
+    "timezoneNotice": "Horarios en la zona de America/Fortaleza (hora local de Pipa)",
+    "organizedBy": "Organizado por"
   },
   "Community": {
     "title": "Comunidad Nomads Pipa",

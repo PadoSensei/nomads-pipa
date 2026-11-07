@@ -1,7 +1,13 @@
 import type { BusinessListing } from "./businesses";
 import type { CategorySlug } from "./categories";
+import type { EssentialServiceListing } from "./essential-services";
+import type { EventListing } from "./events";
 import { demoFixtures } from "./demo-fixtures";
-import type { BusinessFilterOptions, ContentService } from "./service";
+import type {
+  BusinessFilterOptions,
+  ContentService,
+  EssentialServiceFilterOptions,
+} from "./service";
 
 /**
  * Predicate to check if a business satisfies the given filter options.
@@ -58,5 +64,31 @@ export class FixtureContentAdapter implements ContentService {
   async getAllBusinesses(filters?: BusinessFilterOptions): Promise<BusinessListing[]> {
     const list = this.getSource();
     return list.filter((b) => matchesBusinessFilters(b, filters));
+  }
+
+  async getEvents(): Promise<EventListing[]> {
+    // Return sorted chronologically by startsAt
+    const events = demoFixtures.events.map((e) => ({ ...e }));
+    return events.sort(
+      (a, b) => new Date(a.startsAt).getTime() - new Date(b.startsAt).getTime()
+    );
+  }
+
+  async getEssentialServices(
+    filters?: EssentialServiceFilterOptions
+  ): Promise<EssentialServiceListing[]> {
+    let services = demoFixtures.essentialServices.map((s) => ({ ...s }));
+
+    if (filters?.isEmergencyOnly) {
+      services = services.filter((s) => s.isEmergency);
+    }
+
+    if (filters?.essentialSubcategory) {
+      services = services.filter(
+        (s) => s.essentialSubcategory === filters.essentialSubcategory
+      );
+    }
+
+    return services;
   }
 }

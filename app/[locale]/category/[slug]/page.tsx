@@ -12,7 +12,7 @@ import {
   FilterX,
   X,
 } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { Link, redirect } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import {
@@ -103,6 +103,11 @@ async function CategoryListingsContent({
   searchParams,
 }: CategoryPageProps) {
   const { locale, slug } = await params;
+
+  if (slug === "essential-services") {
+    redirect({ href: "/essential-services", locale });
+  }
+
   const rawSearchParams = await searchParams;
   const rawCategory = getCategoryBySlug(slug);
   const config = CATEGORY_CONFIG[slug];

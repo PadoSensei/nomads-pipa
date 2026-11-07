@@ -1,42 +1,97 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { CalendarDays } from "lucide-react";
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
+import { CalendarDays, Sparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { getTranslations } from "next-intl/server";
+import { contentService } from "@/lib/content";
+import { EventCard } from "@/components/events";
+import type { AppLocale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Events & Community Calendar",
-  description:
-    "Discover meetups, surf sessions, workshops, and gatherings happening in Praia da Pipa.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Events" });
 
-export default function EventsPage() {
+  return {
+    title: `${t("title")} — Nomads Pipa`,
+    description: t("subtitle"),
+  };
+}
+
+interface EventsPageProps {
+  params: Promise<{ locale: AppLocale }>;
+}
+
+async function EventsListContent() {
+  const events = await contentService.getEvents();
+  const t = await getTranslations("Events");
+
+  if (events.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/80 bg-card/40 px-6 py-16 text-center shadow-2xs">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted/60 text-muted-foreground mb-4">
+          <CalendarDays className="h-6 w-6" aria-hidden="true" />
+        </div>
+        <h2 className="text-lg font-semibold text-foreground">
+          {t("noEventsFound")}
+        </h2>
+      </div>
+    );
+  }
+
   return (
-    <PlaceholderPage
-      title="Events & Community Calendar"
-      description="Answering the essential nomad question: 'If I want to meet people today, where should I go?' Browse official Nomads Pipa meetups, vetted community picks, and local cultural festivals with distinct visual badges."
-      icon={CalendarDays}
-      badge="Coming Soon · Milestone M1"
-      details={[
-        {
-          label: "Nomads Pipa Meetups",
-          description:
-            "Official weekly community coworking sessions, welcome dinners, and sunset mixers.",
-        },
-        {
-          label: "Community Picks",
-          description:
-            "Third-party events where fellow remote workers and community members plan to go.",
-        },
-        {
-          label: "City & Cultural Events",
-          description:
-            "Pipa festivals, live music schedules, beach cleanups, and local sports matches.",
-        },
-        {
-          label: "WhatsApp RSVP & Direct Links",
-          description:
-            "Connect directly with event coordinators or join specific meetup group chats.",
-        },
-      ]}
-    />
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {events.map((event) => (
+        <EventCard key={event.id} event={event} />
+      ))}
+    </div>
+  );
+}
+
+export default async function EventsPage({ params }: EventsPageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Events" });
+
+  return (
+    <div className="container mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
+      {/* Page Header */}
+      <div className="mb-8 flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <Badge
+            variant="secondary"
+            className="border border-border/80 px-2.5 py-0.5 text-xs font-semibold text-primary"
+          >
+            <Sparkles className="mr-1 h-3 w-3 inline text-accent-foreground" aria-hidden="true" />
+            {t("upcomingEvents")}
+          </Badge>
+          <span className="text-xs font-medium text-muted-foreground">
+            {t("timezoneNotice", { defaultMessage: "All times in America/Fortaleza (Pipa local time)" })}
+          </span>
+        </div>
+
+        <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          {t("title")}
+        </h1>
+        <p className="max-w-2xl text-base text-muted-foreground">
+          {t("subtitle")}
+        </p>
+      </div>
+
+      {/* Events List */}
+      <Suspense
+        fallback={
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="h-72 rounded-2xl bg-muted/40 animate-pulse" />
+            <div className="h-72 rounded-2xl bg-muted/40 animate-pulse" />
+            <div className="h-72 rounded-2xl bg-muted/40 animate-pulse" />
+          </div>
+        }
+      >
+        <EventsListContent />
+      </Suspense>
+    </div>
   );
 }

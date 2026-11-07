@@ -100,10 +100,15 @@ export default async function CategoriesPage({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((cat) => {
           const Icon = cat.icon;
+          const href =
+            cat.slug === "essential-services"
+              ? "/essential-services"
+              : `/category/${cat.slug}`;
+
           return (
             <Link
               key={cat.slug}
-              href={`/category/${cat.slug}`}
+              href={href}
               className="group flex flex-col justify-between rounded-2xl border border-border/70 bg-card p-6 shadow-xs transition-all hover:border-primary/40 hover:bg-muted/30 hover:shadow-md"
             >
               <div>
