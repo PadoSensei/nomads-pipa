@@ -1,5 +1,7 @@
 import type { BusinessListing } from "./businesses";
 import type { CategorySlug, ContextualTagSlug } from "./categories";
+import type { EssentialServiceListing, EssentialServiceSubcategory } from "./essential-services";
+import type { EventListing } from "./events";
 
 /**
  * Filter criteria for business queries.
@@ -7,6 +9,14 @@ import type { CategorySlug, ContextualTagSlug } from "./categories";
 export interface BusinessFilterOptions {
   tags?: ContextualTagSlug[];
   subcategory?: string;
+}
+
+/**
+ * Filter criteria for essential service queries.
+ */
+export interface EssentialServiceFilterOptions {
+  essentialSubcategory?: EssentialServiceSubcategory;
+  isEmergencyOnly?: boolean;
 }
 
 /**
@@ -33,4 +43,16 @@ export interface ContentService {
    * Retrieves all businesses across all categories matching optional filters.
    */
   getAllBusinesses(filters?: BusinessFilterOptions): Promise<BusinessListing[]>;
+
+  /**
+   * Retrieves upcoming and published events sorted chronologically by start date.
+   */
+  getEvents(): Promise<EventListing[]>;
+
+  /**
+   * Retrieves essential services matching optional filters.
+   */
+  getEssentialServices(
+    filters?: EssentialServiceFilterOptions
+  ): Promise<EssentialServiceListing[]>;
 }

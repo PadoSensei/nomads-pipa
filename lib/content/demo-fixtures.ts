@@ -295,14 +295,17 @@ export const demoCityEvent: EventListing = {
 };
 
 /**
- * Demo Essential Service: 24/7 Community First Aid Post & Health Clinic
+ * Demo Essential Service 1: 24/7 Community First Aid Post & Emergency Clinic
+ */
+/**
+ * Main demo essential service fixture alias for backward compatibility.
  */
 export const demoEssentialService: EssentialServiceListing = {
   id: "demo-svc-001",
-  name: "[DEMO] 24/7 Community First Aid Post & Health Clinic",
-  slug: "demo-24-7-community-first-aid-post-health-clinic",
+  name: "[DEMO] 24/7 Pipa Emergency First Aid & Triage Post",
+  slug: "demo-24-7-pipa-emergency-first-aid-post",
   description:
-    "Fictional demonstration listing showing the data structure for an emergency healthcare provider.",
+    "Fictional 24/7 urgent medical triage and emergency first-aid station in the Pipa / Tibau do Sul district.",
   category: "essential-services",
   essentialSubcategory: "emergency",
   address: "Demo Rodovia RN-003, Km 12, Tibau do Sul - RN (Fictional)",
@@ -311,18 +314,231 @@ export const demoEssentialService: EssentialServiceListing = {
     longitude: -35.06,
   },
   contact: {
-    phone: "+55 84 99999-0099",
+    phone: "+55 84 90000-0192",
+    whatsapp: "+55 84 90000-0192",
   },
   publicationStatus: "published",
   visibility: "public",
   verificationStatus: "verified",
   isEmergency: true,
-  emergencyPhone: "192 (SAMU Brazil) / Demo Clinic: +55 84 99999-0099",
+  emergencyPhone: "192 (SAMU Demo) / Urgent: +55 84 90000-0192",
   lastReviewedAt: "2025-01-01T00:00:00Z",
   officialSourceUrl: "https://demo-health-prefeitura.example.gov.br",
   isDemo: true,
   createdAt: "2025-01-01T12:00:00Z",
   updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Posto de Primeiros Socorros e Triagem 24h Pipa",
+      description:
+        "Posto fictício de pronto atendimento médico 24 horas e primeiros socorros em Pipa e Tibau do Sul.",
+    },
+    es: {
+      name: "[DEMO] Centro de Primeros Auxilios y Urgencias 24h Pipa",
+      description:
+        "Puesto ficticio de triaje médico de urgencia 24 horas y primeros auxilios en Pipa y Tibau do Sul.",
+    },
+  },
+};
+
+export const demoEssentialServiceClinic24h = demoEssentialService;
+
+/**
+ * Demo Essential Service 2: Tourist Police & Civil Safety Station
+ */
+export const demoEssentialServicePolice: EssentialServiceListing = {
+  id: "demo-svc-002",
+  name: "[DEMO] Pipa Tourist Police & Community Safety Post",
+  slug: "demo-pipa-tourist-police-community-safety",
+  description:
+    "Fictional local police and civil safety post providing guidance, loss reporting, and emergency dispatch.",
+  category: "essential-services",
+  essentialSubcategory: "emergency",
+  address: "Demo Rua dos Golfinhos, 42, Praia da Pipa - RN (Fictional)",
+  location: {
+    latitude: -6.2285,
+    longitude: -35.0515,
+  },
+  contact: {
+    phone: "+55 84 90000-0190",
+  },
+  publicationStatus: "published",
+  visibility: "public",
+  verificationStatus: "verified",
+  isEmergency: true,
+  emergencyPhone: "190 (Polícia Militar Demo) / +55 84 90000-0190",
+  lastReviewedAt: "2025-01-01T00:00:00Z",
+  officialSourceUrl: "https://demo-seguranca.rn.gov.br",
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Posto de Polícia Turística e Segurança Comunitária",
+      description:
+        "Posto fictício de segurança pública e apoio ao turista para ocorrências, orientações e emergências.",
+    },
+    es: {
+      name: "[DEMO] Puesto de Policía Turística y Seguridad Ciudadana",
+      description:
+        "Puesto ficticio de seguridad ciudadana y atención al turista para denuncias, orientación y emergencias.",
+    },
+  },
+};
+
+/**
+ * Demo Essential Service 3: English-Friendly Family Medical & Doctor Contact
+ */
+export const demoEssentialServiceDoctor: EssentialServiceListing = {
+  id: "demo-svc-003",
+  name: "[DEMO] Pipa International Nomad Clinic & Telehealth",
+  slug: "demo-pipa-international-nomad-clinic",
+  description:
+    "Fictional bilingual outpatient medical consultations, travel health advice, prescription renewal, and English-speaking doctors.",
+  category: "essential-services",
+  essentialSubcategory: "healthcare",
+  address: "Demo Avenida Baía dos Golfinhos, 210, Praia da Pipa (Fictional)",
+  contact: {
+    phone: "+55 84 90000-0021",
+    whatsapp: "+55 84 90000-0021",
+    email: "clinic@demo-pipanomadhealth.example.com",
+    website: "https://demo-pipanomadhealth.example.com",
+  },
+  publicationStatus: "published",
+  visibility: "public",
+  verificationStatus: "verified",
+  isEmergency: false,
+  lastReviewedAt: "2025-02-15T00:00:00Z",
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Clínica Médica Internacional & Telemedicina Pipa",
+      description:
+        "Consultório médico fictício com atendimento em inglês e português, consultas ambulatoriais e receitas para viajantes.",
+    },
+    es: {
+      name: "[DEMO] Clínica Médica Internacional & Telemedicina Pipa",
+      description:
+        "Consultorio médico ficticio con atención bilingüe inglés-portugués, consultas ambulatorias y recetas para viajeros.",
+    },
+  },
+};
+
+/**
+ * Demo Essential Service 4: Laptop & Smartphone Tech Repair
+ */
+export const demoEssentialServiceTechRepair: EssentialServiceListing = {
+  id: "demo-svc-004",
+  name: "[DEMO] Pipa Tech Lab — Laptop & Smartphone Repair",
+  slug: "demo-pipa-tech-lab-laptop-phone-repair",
+  description:
+    "Fictional fast turnaround diagnostics and repairs for MacBooks, laptops, iPhones, charger replacements, and screen fixes.",
+  category: "essential-services",
+  essentialSubcategory: "repairs",
+  address: "Demo Rua do Céu, 30, Praia da Pipa (Fictional)",
+  contact: {
+    phone: "+55 84 90000-0044",
+    whatsapp: "+55 84 90000-0044",
+    instagram: "@demo_pipatechlab",
+  },
+  publicationStatus: "published",
+  visibility: "public",
+  verificationStatus: "verified",
+  isEmergency: false,
+  lastReviewedAt: "2025-02-10T00:00:00Z",
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Pipa Tech Lab — Conserto de Notebooks e Smartphones",
+      description:
+        "Assistência técnica fictícia para MacBooks, notebooks, celulares, troca de tela e substituição de carregadores.",
+    },
+    es: {
+      name: "[DEMO] Pipa Tech Lab — Reparación de Portátiles y Móviles",
+      description:
+        "Taller técnico ficticio para portátiles, MacBooks, teléfonos, cambio de pantallas y cargadores de repuesto.",
+    },
+  },
+};
+
+/**
+ * Demo Essential Service 5: Foreign Pix & Currency Exchange Desk
+ */
+export const demoEssentialServicePixGuidance: EssentialServiceListing = {
+  id: "demo-svc-005",
+  name: "[DEMO] Pipa Nomad Pix & Currency Exchange Desk",
+  slug: "demo-pipa-nomad-pix-currency-exchange",
+  description:
+    "Fictional guidance desk and service helping international travelers set up instant Brazilian Pix payments and cash exchange.",
+  category: "essential-services",
+  essentialSubcategory: "payments",
+  address: "Demo Rua Albacora, 12, Praia da Pipa (Fictional)",
+  contact: {
+    whatsapp: "+55 84 90000-0055",
+    website: "https://demo-pipapixguidance.example.com",
+  },
+  publicationStatus: "published",
+  visibility: "public",
+  verificationStatus: "verified",
+  isEmergency: false,
+  lastReviewedAt: "2025-02-01T00:00:00Z",
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Balcão de Câmbio & Orientação de Pix para Estrangeiros",
+      description:
+        "Serviço fictício de suporte para turistas e estrangeiros configurarem pagamentos via Pix e trocarem moedas com segurança.",
+    },
+    es: {
+      name: "[DEMO] Punto de Cambio & Asesoría Pix para Extranjeros",
+      description:
+        "Servicio ficticio de orientación para viajeros internacionales para configurar pagos por Pix y cambio de divisas.",
+    },
+  },
+};
+
+/**
+ * Demo Essential Service 6: Self-Service & Express Laundromat
+ */
+export const demoEssentialServiceLaundry: EssentialServiceListing = {
+  id: "demo-svc-006",
+  name: "[DEMO] Pipa Waves Express Laundromat & Wash-and-Fold",
+  slug: "demo-pipa-waves-express-laundromat",
+  description:
+    "Fictional eco-friendly wash, dry, and fold laundry service with same-day return for travelers and long-term remote workers.",
+  category: "essential-services",
+  essentialSubcategory: "laundry",
+  address: "Demo Rua das Pedrinhas, 77, Praia da Pipa (Fictional)",
+  contact: {
+    phone: "+55 84 90000-0066",
+    whatsapp: "+55 84 90000-0066",
+  },
+  publicationStatus: "published",
+  visibility: "public",
+  verificationStatus: "verified",
+  isEmergency: false,
+  lastReviewedAt: "2025-02-20T00:00:00Z",
+  isDemo: true,
+  createdAt: "2025-01-01T12:00:00Z",
+  updatedAt: "2025-01-01T12:00:00Z",
+  translations: {
+    "pt-BR": {
+      name: "[DEMO] Lavanderia Expressa & Self-Service Pipa Waves",
+      description:
+        "Lavanderia ecológica fictícia com lavagem, secagem e entrega no mesmo dia para nômades e moradores.",
+    },
+    es: {
+      name: "[DEMO] Lavandería Exprés & Autoservicio Pipa Waves",
+      description:
+        "Lavandería ecológica ficticia con lavado, secado y entrega en el mismo día para nómadas y residentes.",
+    },
+  },
 };
 
 /**
@@ -340,5 +556,12 @@ export const demoFixtures = {
     demoCommunityPickEvent,
     demoCityEvent,
   ],
-  essentialServices: [demoEssentialService],
+  essentialServices: [
+    demoEssentialServiceClinic24h,
+    demoEssentialServicePolice,
+    demoEssentialServiceDoctor,
+    demoEssentialServiceTechRepair,
+    demoEssentialServicePixGuidance,
+    demoEssentialServiceLaundry,
+  ],
 };

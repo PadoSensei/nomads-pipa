@@ -79,6 +79,46 @@
     "categoriesPageDescription": "Encontre exatamente o que você precisa na Praia da Pipa. Navegue por todas as áreas essenciais com recomendações verificadas.",
     "viewListingsAndInfo": "Ver locais e informações"
   },
+  "EssentialServices": {
+    "title": "Serviços Essenciais & Contatos de Emergência",
+    "subtitle": "Saúde crítica, pronto atendimento 24h, segurança, suporte técnico, lavanderia e dicas de Pix em Pipa.",
+    "badge": "Utilidade Diária & Segurança",
+    "verifiedPipaContacts": "Região de Pipa e Tibau do Sul",
+    "emergencyBadge": "Emergência / 24h",
+    "available24h": "Atendimento 24h",
+    "verified": "Verificado",
+    "officialSource": "Portal Oficial / Fonte",
+    "callNow": "Ligar Agora",
+    "callEmergency": "Ligar Emergência",
+    "chatWhatsApp": "Contato via WhatsApp",
+    "noServicesFound": "Nenhum serviço essencial encontrado.",
+    "demoNoticeTitle": "Aviso de Dados Demonstrativos",
+    "demoNoticeDescription": "Estes contatos são demonstrativos e fictícios para testes da interface. Não utilize estes números em emergências reais. Em caso de emergência no Brasil, ligue 192 (SAMU) ou 190 (Polícia Militar).",
+    "sections": {
+      "emergencyTitle": "Contatos de Emergência & Serviços 24h",
+      "emergencySubtitle": "Triagem médica imediata, postos de primeiros socorros, polícia e atendimento urgente.",
+      "healthcareTitle": "Saúde & Atendimento Médico",
+      "healthcareSubtitle": "Médicos com atendimento em inglês, consultas ambulatoriais e saúde para viajantes.",
+      "repairsTitle": "Consertos & Suporte Técnico",
+      "repairsSubtitle": "Assistência técnica para MacBooks, notebooks, celulares e carregadores.",
+      "paymentsTitle": "Pagamentos & Pix para Estrangeiros",
+      "paymentsSubtitle": "Configuração de pagamentos instantâneos no Brasil, casas de câmbio e orientação financeira.",
+      "utilityTitle": "Lavanderia & Utilidades Diárias",
+      "utilitySubtitle": "Lavanderias expressas com secagem e dobra, encomendas e conveniências da rotina."
+    },
+    "subcategories": {
+      "emergency": "Emergência",
+      "healthcare": "Saúde",
+      "dental": "Odontologia",
+      "veterinary": "Veterinária",
+      "repairs": "Tecnologia & Reparos",
+      "couriers": "Correios & Encomendas",
+      "laundry": "Lavanderia",
+      "beauty-wellness": "Beleza & Bem-Estar",
+      "immigration": "Imigração & Jurídico",
+      "payments": "Pagamentos & Pix"
+    }
+  },
   "Events": {
     "title": "Eventos & Encontros",
     "subtitle": "Conecte-se com outros nômades, participe de workshops, sessões de surfe e eventos sociais.",
@@ -90,7 +130,9 @@
     "rsvp": "Confirmar Presença / Participar",
     "startsAt": "Início às",
     "location": "Local",
-    "price": "Entrada / Ingresso"
+    "price": "Entrada / Ingresso",
+    "timezoneNotice": "Horários no fuso de America/Fortaleza (horário de Pipa)",
+    "organizedBy": "Organizado por"
   },
   "Community": {
     "title": "Comunidade Nomads Pipa",
