@@ -94,7 +94,7 @@ export async function AppFooter() {
               </li>
               <li>
                 <Link
-                  href="/category/essential-services"
+                  href="/essential-services"
                   className="transition-colors hover:text-foreground"
                 >
                   {t("essentialServices")}
