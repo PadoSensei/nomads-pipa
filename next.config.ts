@@ -15,6 +15,20 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/:locale/category/essential-services",
+        destination: "/:locale/essential-services",
+        permanent: true,
+      },
+      {
+        source: "/category/essential-services",
+        destination: "/essential-services",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

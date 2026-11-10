@@ -63,7 +63,17 @@
     "partnerTitle": "Você tem um estabelecimento na Praia da Pipa?",
     "partnerSubtitle": "Alcance trabalhadores remotos e viajantes durante sua estadia. Atraia clientes com QR codes verificados, ocupe horários tranquilos com Flash Drops e faça parte das missões locais.",
     "partnerCta": "Seja Parceiro do Nomads Pipa",
-    "aboutPlatformCta": "Sobre a Plataforma"
+    "aboutPlatformCta": "Sobre a Plataforma",
+    "v16HeroHeadline": "Sinta-se em casa em Pipa.",
+    "v16HeroSubline": "Conhecimento local. Conexões reais.",
+    "quickActionStayTitle": "Hospedagem",
+    "quickActionStaySubtitle": "Onde ficar",
+    "quickActionCommunityTitle": "Comunidade",
+    "quickActionCommunitySubtitle": "Conheça pessoas",
+    "quickActionEventsTitle": "Eventos",
+    "quickActionEventsSubtitle": "O que rola",
+    "quickActionFoodTitle": "Onde Comer",
+    "quickActionFoodSubtitle": "Comer & relaxar"
   },
   "Categories": {
     "title": "Categorias de Descoberta",

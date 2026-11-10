@@ -63,7 +63,17 @@
     "partnerTitle": "Are you a local business in Praia da Pipa?",
     "partnerSubtitle": "Reach remote workers and international travellers during their stay. Drive physical footfall with verified QR codes, fill quiet hours with Flash Drops, and become part of curated local quests.",
     "partnerCta": "Partner With Nomads Pipa",
-    "aboutPlatformCta": "About the Platform"
+    "aboutPlatformCta": "About the Platform",
+    "v16HeroHeadline": "Feel at home in Pipa.",
+    "v16HeroSubline": "Local knowledge. Real connections.",
+    "quickActionStayTitle": "Stay",
+    "quickActionStaySubtitle": "Where to stay",
+    "quickActionCommunityTitle": "Community",
+    "quickActionCommunitySubtitle": "Meet people",
+    "quickActionEventsTitle": "Events",
+    "quickActionEventsSubtitle": "What's on",
+    "quickActionFoodTitle": "Food & Drink",
+    "quickActionFoodSubtitle": "Eat & chill"
   },
   "Categories": {
     "title": "Discovery Categories",
