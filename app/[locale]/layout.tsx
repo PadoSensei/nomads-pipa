@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Inter, Sora } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import { routing } from "@/i18n/routing";
@@ -153,6 +154,7 @@ export default async function LocaleLayout({
           <AppFooter />
           <MobileBottomNav />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
